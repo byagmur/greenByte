@@ -1,11 +1,9 @@
 <?php
-// Veritabanı bağlantı ayarları
-$db_host = "localhost"; // Muhtemelen "localhost" olmalı
-$db_user = "admin"; // Kontrol panelinden doğru kullanıcı adı
-$db_pass = "Ke3@1.3ySq1"; // Kullanıcınızın şifresi
-$db_name = "greenbyte"; // Veritabanı adı
+$db_host = $_ENV['DB_HOST'];
+$db_user = $_ENV['DB_USER'];
+$db_pass = $_ENV['DB_PASS'];
+$db_name = $_ENV['DB_NAME'];
 
-// Veritabanı bağlantısını oluştur
 function connectDB() {
     global $db_host, $db_user, $db_pass, $db_name;
     
@@ -17,8 +15,7 @@ function connectDB() {
             error_log("Veritabanı bağlantı hatası: " . $conn->connect_error);
             die("Veritabanı bağlantı hatası: " . $conn->connect_error);
         }
-        
-        // Türkçe karakter desteği için karakter setini ayarla
+
         $conn->set_charset("utf8");
         
         return $conn;

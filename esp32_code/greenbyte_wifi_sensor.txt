@@ -8,8 +8,11 @@
 const char* ssid = "Superbox53";
 const char* password = "SuperB0x.53";
 
+const char* domain = "http://byagmur.com.tr"; // Domain adresi
+const char* apiEndpoint = "/greenbyte/api/update_sensor_data.php";
+
 // Sunucu Ayarları
-const char* serverName = "http://kemalasliyuksek.com/greenbyte/api/update_sensor_data.php";
+const char* serverName = String(domain) + String(apiEndpoint); 
 const int seraID = 1; // Hangi seraya ait veriler
 
 // Güncelleme Aralığı (milisaniye cinsinden)
