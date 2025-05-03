@@ -2,14 +2,13 @@
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 #include <DHT.h>
+#include "arduino_secrets.h" // Hassas bilgileri içeren dosya
 
 // ===== AYARLANACAK PARAMETRELER =====
-// WiFi Bağlantısı
-const char* ssid = "Superbox53";
-const char* password = "SuperB0x.53";
+const char* ssid = SECRET_SSID;
+const char* password = SECRET_PASSWORD;
+const char* serverName = SECRET_SERVER_NAME;
 
-// Sunucu Ayarları
-const char* serverName = "http://kemalasliyuksek.com/greenbyte/api/update_sensor_data.php";
 const int seraID = 1; // Hangi seraya ait veriler
 
 // Güncelleme Aralığı (milisaniye cinsinden)
