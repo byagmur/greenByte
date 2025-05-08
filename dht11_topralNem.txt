@@ -1,0 +1,93 @@
+#include <DHT.h>
+#include <Arduino.h>
+#include <WiFi.h>
+#include <HTTPClient.h>
+
+// Wi-Fi bilgileri
+const char* ssid = "WiFi_ADI";
+const char* password = "WiFi_SİFRE";
+
+const char* serverName = "http://kemalasliyuksek.com/GreenByte/veri_gonder.php"; // IP ya da domain
+
+// DHT11 sensörü pin tanımları
+#define DHTPIN 14       // GPIO14 (12 numaralı fiziksel pin)
+#define DHTTYPE DHT11   // DHT11 sensör tipi
+
+// Toprak nem sensörü pin tanımlamaları
+const int toprakNemAnalogPin = 36;  // GPIO36 (ADC0) - 3 numaralı pin
+const int toprakNemDigitalPin = 25; // GPIO25 - 9 numaralı pin
+const int led = 2;                  // ESP32 üzerindeki dahili LED (GPIO2)
+
+// Değişkenler
+int analogValue = 0;
+int digitalValue = 0;
+int nemYuzdesi = 0;
+
+// Kalibrasyon değerleri
+const int kuru = 3400;   // Sensör kuru topraktayken ölçülen değer
+const int islak = 1400;  // Sensör suda veya çok nemli topraktayken ölçülen değer
+
+// DHT sensör nesnesi oluşturma
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  Serial.begin(9600);  // Seri iletişimi başlat
+  Serial.println("ESP32 ile DHT11 ve Toprak Nem Sensörü Uygulaması");
+  
+  // Pinleri yapılandır
+  pinMode(toprakNemDigitalPin, INPUT);
+  pinMode(led, OUTPUT);
+  
+  // DHT sensörünü başlat
+  dht.begin();
+  
+  delay(1000);
+}
+
+void loop() {
+  // DHT11 sensöründen nem ve sıcaklık değerlerini oku
+  float havaNem = dht.readHumidity();
+  float sicaklik = dht.readTemperature();
+
+  // Toprak nem sensöründen değerleri oku
+  analogValue = analogRead(toprakNemAnalogPin);
+  digitalValue = digitalRead(toprakNemDigitalPin);
+  
+  // Toprak nem değerini yüzde olarak hesapla
+  nemYuzdesi = map(analogValue, kuru, islak, 0, 100);
+  
+  // Değerin 0-100 aralığında olmasını sağla
+  nemYuzdesi = constrain(nemYuzdesi, 0, 100);
+
+  // DHT11 değerlerini kontrol et
+  if (isnan(havaNem) || isnan(sicaklik)) {
+    Serial.println("DHT sensöründen veri okunamadı!");
+  } else {
+    // DHT11 değerlerini seri monitöre yaz
+    Serial.print("Hava Nemi: ");
+    Serial.print(havaNem);
+    Serial.print("% | ");
+    Serial.print("Sıcaklık: ");
+    Serial.print(sicaklik);
+    Serial.print("°C | ");
+  }
+
+  // Toprak nem değerlerini seri monitöre yazdır
+  Serial.print("Toprak Nem Analog Değer: ");
+  Serial.print(analogValue);
+  Serial.print(" | Toprak Nem Dijital Değer: ");
+  Serial.print(digitalValue);
+  Serial.print(" | Toprak Nem Yüzdesi: %");
+  Serial.println(nemYuzdesi);
+  
+  // Eğer toprak kuruysa LED'i yak
+  if (nemYuzdesi < 30) {
+    digitalWrite(led, HIGH);
+    Serial.println("Toprak kuru! Sulama gerekli!");
+  } else {
+    digitalWrite(led, LOW);
+  }
+  
+  // 2 saniye bekle ve sonra tekrar döngüye gir
+  delay(2000);
+}
