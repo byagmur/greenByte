@@ -12,7 +12,14 @@ namespace GreenByte.DataAccess
             using (var connection = DBContext.GetConnection())
             {
                 string sql = "INSERT INTO log_kayitlari (kullanici_id, log_tipi, mesaj, log_zamani) VALUES (@KullaniciId, @LogTipi, @Mesaj, @LogZamani)";
-                connection.Execute(sql, log);
+
+                var parameters = new DynamicParameters();
+                parameters.Add("@KullaniciId", log.UserId);
+                parameters.Add("@LogTipi", log.LogType.ToString());
+                parameters.Add("@Mesaj", log.Message);
+                parameters.Add("@LogZamani", log.LogTime);
+
+                connection.Execute(sql, parameters);
             }
         }
 

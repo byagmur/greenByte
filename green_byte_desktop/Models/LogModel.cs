@@ -11,7 +11,7 @@ namespace GreenByte.Models
     public class LogModel
     {
         public int Id { get; set; }
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
         public LogType LogType { get; set; }
         public string Message { get; set; }
         public DateTime LogTime { get; set; }
