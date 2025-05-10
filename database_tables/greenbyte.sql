@@ -68,3 +68,39 @@ CREATE TABLE hava_durumu (
     kayit_zamani DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (sera_id) REFERENCES seralar(id) ON DELETE CASCADE
 );
+
+
+CREATE TABLE bitki_turleri (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tur_adi VARCHAR(100) NOT NULL,
+    min_sicaklik FLOAT,
+    max_sicaklik FLOAT,
+    min_nem FLOAT,
+    max_nem FLOAT,
+    min_gunluk_isik_saati FLOAT,
+    max_gunluk_isik_saati FLOAT,
+    min_isik_yogunlugu INT,
+    max_isik_yogunlugu INT,
+    min_toprak_nemi FLOAT,
+    max_toprak_nemi FLOAT,
+    sulama_sikligi INT,
+    yetistirme_suresi INT,
+    notlar TEXT,
+    eklenme_tarihi DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE bitkiler (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sera_id INT NOT NULL,
+    bitki_tur_id INT NOT NULL,
+    bolge_kodu VARCHAR(50) NOT NULL,
+    ekim_tarihi DATE NOT NULL,
+    gelisim_yuzdesi FLOAT DEFAULT 0,
+    tahmini_hasat_tarihi DATE,
+    notlar TEXT,
+    durum ENUM('aktif', 'hasat_edildi', 'iptal') DEFAULT 'aktif',
+    son_guncelleme DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (sera_id) REFERENCES seralar(id) ON DELETE CASCADE,
+    FOREIGN KEY (bitki_tur_id) REFERENCES bitki_turleri(id)
+);
