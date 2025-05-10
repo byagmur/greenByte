@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace GreenByte
 {
-    partial class LoginForm : Form // Ensure FormLogin inherits from Form
+    partial class FormLogin : Form // Ensure FormLogin inherits from Form
     {
         /// <summary>
         /// Required designer variable.
@@ -51,7 +51,7 @@ namespace GreenByte
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.topBar = new System.Windows.Forms.Panel();
             this.titleLabel = new System.Windows.Forms.Label();

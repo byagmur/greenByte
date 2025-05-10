@@ -30,12 +30,12 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.buttonClose = new System.Windows.Forms.Button();
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panelMain = new System.Windows.Forms.Panel();
             this.buttonSeraYonetimPage = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.buttonWaterControlPage = new System.Windows.Forms.Button();
             this.buttonMouistControlPage = new System.Windows.Forms.Button();
             this.buttonLightControlPage = new System.Windows.Forms.Button();
@@ -43,7 +43,7 @@
             this.buttonDataControlPage = new System.Windows.Forms.Button();
             this.buttonUserControlPage = new System.Windows.Forms.Button();
             this.buttonDashboardPage = new System.Windows.Forms.Button();
-            this.buttonClose = new System.Windows.Forms.Button();
+            this.panelMain = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -73,6 +73,24 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "GreenByte Sera Kontrol Paneli";
             // 
+            // buttonClose
+            // 
+            this.buttonClose.BackColor = System.Drawing.Color.Transparent;
+            this.buttonClose.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonClose.FlatAppearance.BorderSize = 0;
+            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.buttonClose.ForeColor = System.Drawing.Color.White;
+            this.buttonClose.Image = global::greenByte.Properties.Resources._24px_close_icon;
+            this.buttonClose.Location = new System.Drawing.Point(1186, 0);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.buttonClose.Size = new System.Drawing.Size(35, 43);
+            this.buttonClose.TabIndex = 0;
+            this.buttonClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonClose.UseVisualStyleBackColor = false;
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
@@ -91,36 +109,6 @@
             this.panelMenu.Size = new System.Drawing.Size(213, 640);
             this.panelMenu.TabIndex = 1;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 586);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(213, 54);
-            this.panel2.TabIndex = 8;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(52, 11);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 19);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "admin";
-            // 
-            // panelMain
-            // 
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(213, 43);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Padding = new System.Windows.Forms.Padding(4);
-            this.panelMain.Size = new System.Drawing.Size(1012, 640);
-            this.panelMain.TabIndex = 2;
-            // 
             // buttonSeraYonetimPage
             // 
             this.buttonSeraYonetimPage.BackColor = System.Drawing.Color.Transparent;
@@ -138,6 +126,16 @@
             this.buttonSeraYonetimPage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonSeraYonetimPage.UseVisualStyleBackColor = false;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 586);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(213, 54);
+            this.panel2.TabIndex = 8;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::greenByte.Properties.Resources.user;
@@ -146,6 +144,17 @@
             this.pictureBox1.Size = new System.Drawing.Size(34, 34);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(52, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 19);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "admin";
             // 
             // buttonWaterControlPage
             // 
@@ -266,23 +275,14 @@
             this.buttonDashboardPage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonDashboardPage.UseVisualStyleBackColor = false;
             // 
-            // buttonClose
+            // panelMain
             // 
-            this.buttonClose.BackColor = System.Drawing.Color.Transparent;
-            this.buttonClose.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonClose.FlatAppearance.BorderSize = 0;
-            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.buttonClose.ForeColor = System.Drawing.Color.White;
-            this.buttonClose.Image = global::greenByte.Properties.Resources._24px_close_icon;
-            this.buttonClose.Location = new System.Drawing.Point(1186, 0);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.buttonClose.Size = new System.Drawing.Size(35, 43);
-            this.buttonClose.TabIndex = 0;
-            this.buttonClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonClose.UseVisualStyleBackColor = false;
-            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Location = new System.Drawing.Point(213, 43);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Padding = new System.Windows.Forms.Padding(4);
+            this.panelMain.Size = new System.Drawing.Size(1012, 640);
+            this.panelMain.TabIndex = 2;
             // 
             // FormMain
             // 
@@ -294,6 +294,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormMain";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

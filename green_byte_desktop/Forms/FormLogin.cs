@@ -9,14 +9,18 @@ using MySql.Data.MySqlClient;
 
 namespace GreenByte
 {
-    public partial class LoginForm : Form
+    public partial class FormLogin : Form
     {
-        public LoginForm()
+        public FormLogin()
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None; // Kenarlıksız form
             this.StartPosition = FormStartPosition.CenterScreen; // Ekranın ortasında başlat
-            
+
+
+            this.Load += LoginForm_Load;
+
+
             // Gradient panel için Paint olayı
             gradientPanel.Paint += (s, e) =>
             {
@@ -39,6 +43,29 @@ namespace GreenByte
 
             // Giriş butonu için Click olayı
             loginButton.Click += LoginButton_Click;
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            // Veritabanı bağlantısını test et
+            try
+            {
+                if (DBContext.TestConnection())
+                {
+                    MessageBox.Show("Veritabanı bağlantısı başarılı.",
+                        "Bağlantı Durumu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Veritabanı bağlantısı başarısız! Lütfen bağlantı ayarlarını kontrol edin.",
+                        "Bağlantı Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Veritabanı bağlantısı test edilirken hata oluştu: " + ex.Message,
+                    "Bağlantı Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
