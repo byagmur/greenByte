@@ -15,6 +15,13 @@ namespace greenByte.Forms
         {
             InitializeComponent();
             fillGreenHouseCombo();
+            LogDataAccess.Add(new LogModel
+            {
+                UserId = CurrentUser.Id,
+                LogType = LogType.Info,
+                Message = "Kullanıcı sera seçimi sayfasına yönlendirildi.",
+                LogTime = DateTime.Now
+            });
         }
 
         private void fillGreenHouseCombo()
@@ -25,6 +32,13 @@ namespace greenByte.Forms
 
             // Kullanıcıya ait seraları çek
             var greenhouseDal = new GreenHouseDataAccess();
+            LogDataAccess.Add(new LogModel
+            {
+                UserId = CurrentUser.Id,
+                LogType = LogType.Info,
+                Message = "Kullanıcıya ait seralar çekildi.",
+                LogTime = DateTime.Now
+            });
             var greenhouses = greenhouseDal.GetAll()
                                            .Where(g => g.UserId == user.Id)
                                            .ToList();
@@ -34,6 +48,7 @@ namespace greenByte.Forms
             comboBoxGreenHouse.ValueMember = "Id";
             if (greenhouses.Count > 0)
                 comboBoxGreenHouse.SelectedIndex = 0;
+                
         }
 
         private void buttonDevam_Click(object sender, EventArgs e)
@@ -47,10 +62,24 @@ namespace greenByte.Forms
 
             // Seçili serayı global olarak ata
             CurrentGreenhouse.Selected = SelectedGreenhouse;
+            LogDataAccess.Add(new LogModel
+            {
+                UserId = CurrentUser.Id,
+                LogType = LogType.Info,
+                Message = "Kullanıcı seçili serayı global olarak atandı.",
+                LogTime = DateTime.Now
+            });
 
             // Ana forma yönlendir
             var mainForm = new FormMain();
             mainForm.Show();
+            LogDataAccess.Add(new LogModel
+            {
+                UserId = CurrentUser.Id,
+                LogType = LogType.Info,
+                Message = "Kullanıcı ana forma yönlendirildi.",
+                LogTime = DateTime.Now
+            });
             this.Hide();
         }
 
@@ -58,6 +87,13 @@ namespace greenByte.Forms
         {
             // Login sayfasına geri git
             var loginForm = new FormLogin();
+            LogDataAccess.Add(new LogModel
+            {
+                UserId = CurrentUser.Id,
+                LogType = LogType.Info,
+                Message = "Kullanıcı login sayfasına yönlendirildi.",
+                LogTime = DateTime.Now
+            });
             loginForm.Show();
             this.Hide();
         }

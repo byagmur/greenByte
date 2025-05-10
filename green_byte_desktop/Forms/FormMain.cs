@@ -1,6 +1,7 @@
 ﻿using greenByte.Controls;
 using greenByte.Pages;
 using GreenByte;
+using GreenByte.DataAccess;
 using GreenByte.Models;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,13 @@ namespace greenByte.Forms
         private void buttonClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
+            LogDataAccess.Add(new LogModel
+            {
+                UserId = CurrentUser.Id,
+                LogType = LogType.Info,
+                Message = "Kullanıcı uygulamadan çıktı.",
+                LogTime = DateTime.Now
+            });
         }
 
         private void clearAndAddControl(Control control)
@@ -56,18 +64,46 @@ namespace greenByte.Forms
                 {
                     case "buttonDashboardPage":
                         clearAndAddControl(new AdminDashboardPage());
+                        LogDataAccess.Add(new LogModel
+                        {
+                            UserId = CurrentUser.Id,
+                            LogType = LogType.Info,
+                            Message = "Kullanıcı dashboard sayfasına yönlendirildi.",
+                            LogTime = DateTime.Now
+                        });
                         break; 
                     case "buttonUserControlPage":
                         clearAndAddControl(new UsersControlPage());
+                        LogDataAccess.Add(new LogModel
+                        {
+                            UserId = CurrentUser.Id,
+                            LogType = LogType.Info,
+                            Message = "Kullanıcı kullanıcı yönetim sayfasına yönlendirildi.",
+                            LogTime = DateTime.Now
+                        });
                         break;
                     case "buttonSeraYonetimPage":
                         clearAndAddControl(new SeraYonetimPage());
+                        LogDataAccess.Add(new LogModel
+                        {
+                            UserId = CurrentUser.Id,
+                            LogType = LogType.Info,
+                            Message = "Kullanıcı sera yönetim sayfasına yönlendirildi.",
+                            LogTime = DateTime.Now
+                        });
                         break;
                     //case "buttonTempControlPage":
                     //    clearAndAddControl(new TemperatureControlPage());
                     //    break;
                     case "buttonDataControlPage":
                        clearAndAddControl(new DataControlPage());
+                       LogDataAccess.Add(new LogModel
+                       {
+                           UserId = CurrentUser.Id,
+                           LogType = LogType.Info,
+                           Message = "Kullanıcı veri yönetim sayfasına yönlendirildi.",
+                           LogTime = DateTime.Now
+                       });
                        break;
                     //case "buttonLightControlPage":
                     //   clearAndAddControl(new LightControlPage());
@@ -100,6 +136,13 @@ namespace greenByte.Forms
             Properties.Settings.Default.savedPassword = "";
             Properties.Settings.Default.Save();
 
+            LogDataAccess.Add(new LogModel
+            {
+                UserId = CurrentUser.Id,
+                LogType = LogType.Info,
+                Message = "Kullanıcı çıkış yapıldı.",
+                LogTime = DateTime.Now
+            });
             // Login ekranını aç
             FormLogin loginForm = new FormLogin();
             loginForm.Show();

@@ -1,9 +1,10 @@
 CREATE TABLE kullanicilar (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    sera_id INT,
     kullanici_adi VARCHAR(50) UNIQUE NOT NULL,
     sifre VARCHAR(255) NOT NULL,
     email VARCHAR(100),
-    kayit_tarihi DATETIME DEFAULT CURRENT_TIMESTAMP
+    kayit_tarihi DATETIME DEFAULT CURRENT_TIMESTAMP,
 );
 
 
@@ -103,4 +104,12 @@ CREATE TABLE bitkiler (
     son_guncelleme DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (sera_id) REFERENCES seralar(id) ON DELETE CASCADE,
     FOREIGN KEY (bitki_tur_id) REFERENCES bitki_turleri(id)
+);
+
+CREATE TABLE log_kayitlari (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    kullanici_id INT,
+    log_tipi ENUM('Info', 'Error') NOT NULL,
+    mesaj TEXT,
+    log_zamani DATETIME DEFAULT CURRENT_TIMESTAMP,
 );

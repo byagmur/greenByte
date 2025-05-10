@@ -73,7 +73,9 @@ namespace GreenByte
                     var seraSecForm = new FormSelectGreenHouse();
                     if (seraSecForm.ShowDialog() == DialogResult.OK)
                     {
+                        
                         CurrentGreenhouse.Selected = seraSecForm.SelectedGreenhouse;
+                        CurrentUser.Id = user.Id;
 
                         // Ana formu aç
                         var mainForm = new FormMain();
