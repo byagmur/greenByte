@@ -1,5 +1,7 @@
 ﻿using greenByte.Controls;
 using greenByte.Pages;
+using GreenByte;
+using GreenByte.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,12 +22,14 @@ namespace greenByte.Forms
             this.buttonDashboardPage.Click += new System.EventHandler(this.buttonPage_Click);
             this.buttonUserControlPage.Click += new System.EventHandler(this.buttonPage_Click);
             this.buttonDataControlPage.Click += new System.EventHandler(this.buttonPage_Click);
-            this.buttonLightControlPage.Click += new System.EventHandler(this.buttonPage_Click);
-            this.buttonMouistControlPage.Click += new System.EventHandler(this.buttonPage_Click);
-            this.buttonTempControlPage.Click += new System.EventHandler(this.buttonPage_Click);
-            this.buttonWaterControlPage.Click += new System.EventHandler(this.buttonPage_Click);
+            //this.buttonLightControlPage.Click += new System.EventHandler(this.buttonPage_Click);
+            //this.buttonMouistControlPage.Click += new System.EventHandler(this.buttonPage_Click);
+            //this.buttonTempControlPage.Click += new System.EventHandler(this.buttonPage_Click);
+            //this.buttonWaterControlPage.Click += new System.EventHandler(this.buttonPage_Click);
             this.buttonSeraYonetimPage.Click += new System.EventHandler(this.buttonPage_Click);
 
+            labelUsername.Text = CurrentUser.User.Username;
+            // labelGreenHouse.Text = CurrentUser.User.GreenHouse;
 
         }
 
@@ -59,21 +63,21 @@ namespace greenByte.Forms
                     case "buttonSeraYonetimPage":
                         clearAndAddControl(new SeraYonetimPage());
                         break;
-                    case "buttonTempControlPage":
-                        clearAndAddControl(new TemperatureControlPage());
-                        break;
+                    //case "buttonTempControlPage":
+                    //    clearAndAddControl(new TemperatureControlPage());
+                    //    break;
                     case "buttonDataControlPage":
                        clearAndAddControl(new DataControlPage());
                        break;
-                    case "buttonLightControlPage":
-                       clearAndAddControl(new LightControlPage());
-                       break;
-                    case "buttonMouistControlPage":
-                        clearAndAddControl(new MoistureControlPage());
-                        break;                    
-                    case "buttonWaterControlPage":
-                        clearAndAddControl(new WaterControlPage());
-                        break;
+                    //case "buttonLightControlPage":
+                    //   clearAndAddControl(new LightControlPage());
+                    //   break;
+                    //case "buttonMouistControlPage":
+                    //    clearAndAddControl(new MoistureControlPage());
+                    //    break;                    
+                    //case "buttonWaterControlPage":
+                    //    clearAndAddControl(new WaterControlPage());
+                    //    break;
 
                     default:
                         clearAndAddControl(new AdminDashboardPage());
@@ -83,6 +87,25 @@ namespace greenByte.Forms
                 //MessageBox.Show($"TablePanel kontrol sayısı: {tablePanel1.Controls.Count}");
 
             }
+        }
+
+        private void buttonLogout_Click(object sender, EventArgs e)
+        {
+            // Kullanıcı bilgisini temizle
+            CurrentUser.User = null;
+
+            // "Beni Hatırla" ayarlarını da temizlemek istersen:
+            Properties.Settings.Default.rememberMe = false;
+            Properties.Settings.Default.savedUsername = "";
+            Properties.Settings.Default.savedPassword = "";
+            Properties.Settings.Default.Save();
+
+            // Login ekranını aç
+            FormLogin loginForm = new FormLogin();
+            loginForm.Show();
+
+            // Ana formu kapat
+            this.Close();
         }
     }
 }

@@ -5,6 +5,10 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using GreenByte.DataAccess;
+using System.Linq;
+using System.Windows.Forms.PropertyGridInternal;
+using GreenByte.Models;
 
 
 namespace GreenByte
@@ -14,57 +18,20 @@ namespace GreenByte
         public FormLogin()
         {
             InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.None; // Kenarlıksız form
-            this.StartPosition = FormStartPosition.CenterScreen; // Ekranın ortasında başlat
 
-
-            this.Load += LoginForm_Load;
-
-
-            // Gradient panel için Paint olayı
-            gradientPanel.Paint += (s, e) =>
-            {
-                using (LinearGradientBrush brush = new LinearGradientBrush(
-                    gradientPanel.ClientRectangle,
-                    Color.FromArgb(180, 27, 94, 32),
-                    Color.FromArgb(100, 27, 94, 32),
-                    LinearGradientMode.Horizontal))
-                {
-                    e.Graphics.FillRectangle(brush, gradientPanel.ClientRectangle);
-                }
-            };
-
-            // Focus olayları
             userTextBox.Enter += (s, e) => userUnderlinePanel.BackColor = Color.FromArgb(46, 125, 50);
             userTextBox.Leave += (s, e) => userUnderlinePanel.BackColor = Color.FromArgb(224, 224, 224);
 
             passwordTextBox.Enter += (s, e) => passwordUnderlinePanel.BackColor = Color.FromArgb(46, 125, 50);
             passwordTextBox.Leave += (s, e) => passwordUnderlinePanel.BackColor = Color.FromArgb(224, 224, 224);
 
-            // Giriş butonu için Click olayı
             loginButton.Click += LoginButton_Click;
-        }
 
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-            // Veritabanı bağlantısını test et
-            try
+            if (greenByte.Properties.Settings.Default.rememberMe)
             {
-                if (DBContext.TestConnection())
-                {
-                    MessageBox.Show("Veritabanı bağlantısı başarılı.",
-                        "Bağlantı Durumu", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Veritabanı bağlantısı başarısız! Lütfen bağlantı ayarlarını kontrol edin.",
-                        "Bağlantı Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Veritabanı bağlantısı test edilirken hata oluştu: " + ex.Message,
-                    "Bağlantı Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                userTextBox.Text = greenByte.Properties.Settings.Default.savedUsername;
+                passwordTextBox.Text = greenByte.Properties.Settings.Default.savedPassword;
+                rememberMeCheckBox.Checked = true;
             }
         }
 
@@ -80,74 +47,83 @@ namespace GreenByte
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Kullanıcı adı ve şifre boş bırakılamaz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LogDataAccess.Add(new LogModel
+                {
+                    UserId = CurrentUser.Id,
+                    LogType = LogType.Error,
+                    Message = "Kullanıcı adı ve şifre boş bırakılamaz!",
+                    LogTime = DateTime.Now
+                });
                 return;
             }
 
             try
             {
-   
-                using (var connection = DBContext.GetConnection())
+                var userDal = new UserDataAccess();
+                var user = userDal.GetAll().FirstOrDefault(u => u.Username == username && u.Password == password);
+
+                if (user != null)
                 {
-                    connection.Open();
-                    string query = "SELECT COUNT(*) FROM kullanicilar WHERE kullanici_adi = @username AND sifre = @password";
-                    
-                    using (var command = new MySqlCommand(query, connection))
+                    CurrentUser.User = user;
+
+                    // Login formunu gizle
+                    this.Hide();
+
+                    // Sera seçme formunu göster
+                    var seraSecForm = new FormSelectGreenHouse();
+                    if (seraSecForm.ShowDialog() == DialogResult.OK)
                     {
-                        command.Parameters.AddWithValue("@username", username);
-                        command.Parameters.AddWithValue("@password", password);
+                        CurrentGreenhouse.Selected = seraSecForm.SelectedGreenhouse;
 
-                        int count = Convert.ToInt32(command.ExecuteScalar());
-
-                        if (count > 0)
+                        // Ana formu aç
+                        var mainForm = new FormMain();
+                        mainForm.Show();
+                        LogDataAccess.Add(new LogModel
                         {
-                            MessageBox.Show("Giriş başarılı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            FormMain mainForm = new FormMain();
-                            mainForm.Show();
-                            this.Hide();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Kullanıcı adı veya şifre hatalı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                            UserId = CurrentUser.Id,
+                            LogType = LogType.Info,
+                            Message = "Kullanıcı ana ekrana yönlendirildi.",
+                            LogTime = DateTime.Now
+                        });
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Kullanıcı adı veya şifre hatalı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LogDataAccess.Add(new LogModel
+                    {
+                        UserId = CurrentUser.Id,
+                        LogType = LogType.Error,
+                        Message = "Kullanıcı adı veya şifre hatalı!",
+                        LogTime = DateTime.Now
+                    });
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Bağlantı hatası: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LogDataAccess.Add(new LogModel
+                {
+                    UserId = CurrentUser.Id,
+                    LogType = LogType.Error,
+                    Message = "Bağlantı hatası: " + ex.Message,
+                    LogTime = DateTime.Now
+                });
             }
-        }
-
-        private void RegisterLink_Click(object sender, EventArgs e)
-        {
-            // Kayıt formunu açma kodları buraya gelecek
-            // RegisterForm registerForm = new RegisterForm();
-            // registerForm.Show();
-            // this.Hide();
-        }
-
-        // Form kenarlıklarının yuvarlak olması için
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-
-            // Formun kenarları için yuvarlak köşe çiz
-            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-            int radius = 5;
-
-            path.AddArc(0, 0, radius * 2, radius * 2, 180, 90);
-            path.AddArc(this.Width - radius * 2, 0, radius * 2, radius * 2, 270, 90);
-            path.AddArc(this.Width - radius * 2, this.Height - radius * 2, radius * 2, radius * 2, 0, 90);
-            path.AddArc(0, this.Height - radius * 2, radius * 2, radius * 2, 90, 90);
-
-            path.CloseAllFigures();
-
-            this.Region = new Region(path);
         }
 
         private void closeButton_Click(object sender, EventArgs e)
         {
+          // Kullanıcı bilgisini temizle
+            CurrentUser.User = null;
             Application.Exit();
+            LogDataAccess.Add(new LogModel
+            {
+                UserId = CurrentUser.Id,
+                LogType = LogType.Info,
+                Message = "Kullanıcı uygulamadan çıktı.",
+                LogTime = DateTime.Now
+            });
         }
     }
 }

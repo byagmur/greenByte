@@ -35,9 +35,10 @@ namespace greenByte.Pages
             this.dataGridViewKullanicilar = new System.Windows.Forms.DataGridView();
             this.labelBaslik = new System.Windows.Forms.Label();
             this.panelButonlar = new System.Windows.Forms.Panel();
-            this.btnEkle = new System.Windows.Forms.Button();
+            this.btnKullaniciEkle = new System.Windows.Forms.Button();
             this.btnDuzenle = new System.Windows.Forms.Button();
             this.btnSil = new System.Windows.Forms.Button();
+            this.buttonRefreshData = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKullanicilar)).BeginInit();
             this.panelButonlar.SuspendLayout();
@@ -45,6 +46,7 @@ namespace greenByte.Pages
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonRefreshData);
             this.panel1.Controls.Add(this.dataGridViewKullanicilar);
             this.panel1.Controls.Add(this.labelBaslik);
             this.panel1.Controls.Add(this.panelButonlar);
@@ -80,7 +82,7 @@ namespace greenByte.Pages
             // 
             // panelButonlar
             // 
-            this.panelButonlar.Controls.Add(this.btnEkle);
+            this.panelButonlar.Controls.Add(this.btnKullaniciEkle);
             this.panelButonlar.Controls.Add(this.btnDuzenle);
             this.panelButonlar.Controls.Add(this.btnSil);
             this.panelButonlar.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -89,19 +91,20 @@ namespace greenByte.Pages
             this.panelButonlar.Size = new System.Drawing.Size(968, 50);
             this.panelButonlar.TabIndex = 5;
             // 
-            // btnEkle
+            // btnKullaniciEkle
             // 
-            this.btnEkle.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnEkle.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnEkle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEkle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnEkle.ForeColor = System.Drawing.Color.White;
-            this.btnEkle.Location = new System.Drawing.Point(11, 10);
-            this.btnEkle.Name = "btnEkle";
-            this.btnEkle.Size = new System.Drawing.Size(100, 30);
-            this.btnEkle.TabIndex = 3;
-            this.btnEkle.Text = "Ekle";
-            this.btnEkle.UseVisualStyleBackColor = false;
+            this.btnKullaniciEkle.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnKullaniciEkle.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnKullaniciEkle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKullaniciEkle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnKullaniciEkle.ForeColor = System.Drawing.Color.White;
+            this.btnKullaniciEkle.Location = new System.Drawing.Point(11, 10);
+            this.btnKullaniciEkle.Name = "btnKullaniciEkle";
+            this.btnKullaniciEkle.Size = new System.Drawing.Size(100, 30);
+            this.btnKullaniciEkle.TabIndex = 3;
+            this.btnKullaniciEkle.Text = "Ekle";
+            this.btnKullaniciEkle.UseVisualStyleBackColor = false;
+            this.btnKullaniciEkle.Click += new System.EventHandler(this.btnKullaniciEkle_Click);
             // 
             // btnDuzenle
             // 
@@ -116,6 +119,7 @@ namespace greenByte.Pages
             this.btnDuzenle.TabIndex = 4;
             this.btnDuzenle.Text = "Düzenle";
             this.btnDuzenle.UseVisualStyleBackColor = false;
+            this.btnDuzenle.Click += new System.EventHandler(this.btnDuzenle_Click);
             // 
             // btnSil
             // 
@@ -130,6 +134,19 @@ namespace greenByte.Pages
             this.btnSil.TabIndex = 5;
             this.btnSil.Text = "Sil";
             this.btnSil.UseVisualStyleBackColor = false;
+            this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
+            // 
+            // buttonRefreshData
+            // 
+            this.buttonRefreshData.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonRefreshData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRefreshData.Image = global::greenByte.Properties.Resources.ic__round_refresh__24px_;
+            this.buttonRefreshData.Location = new System.Drawing.Point(213, 17);
+            this.buttonRefreshData.Name = "buttonRefreshData";
+            this.buttonRefreshData.Size = new System.Drawing.Size(31, 31);
+            this.buttonRefreshData.TabIndex = 6;
+            this.buttonRefreshData.UseVisualStyleBackColor = true;
+            this.buttonRefreshData.Click += new System.EventHandler(this.buttonRefreshData_Click);
             // 
             // UsersControlPage
             // 
@@ -149,8 +166,9 @@ namespace greenByte.Pages
         private Label labelBaslik;
         private DataGridView dataGridViewKullanicilar;
         private Panel panelButonlar;
-        private Button btnEkle;
+        private Button btnKullaniciEkle;
         private Button btnDuzenle;
         private Button btnSil;
+        private Button buttonRefreshData;
     }
 }

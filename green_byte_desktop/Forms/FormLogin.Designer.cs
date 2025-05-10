@@ -16,10 +16,6 @@ namespace GreenByte
         private Panel topBar;
         private Label titleLabel;
         private Button closeButton;
-        private Panel leftPanel;
-        private PictureBox backgroundImage;
-        private Panel gradientPanel;
-        private Label sloganLabel;
         private Panel rightPanel;
         private Label welcomeLabel;
         private Label subTitleLabel;
@@ -29,8 +25,7 @@ namespace GreenByte
         private Label passwordLabel;
         private TextBox passwordTextBox;
         private Panel passwordUnderlinePanel;
-        private CheckBox rememberCheckBox;
-        private LinkLabel forgotPasswordLink;
+        private CheckBox rememberMeCheckBox;
         private Button loginButton;
         private Panel leftLine;
         private Panel rightLine;
@@ -69,8 +64,7 @@ namespace GreenByte
             this.passwordLabel = new System.Windows.Forms.Label();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.passwordUnderlinePanel = new System.Windows.Forms.Panel();
-            this.forgotPasswordLink = new System.Windows.Forms.LinkLabel();
-            this.rememberCheckBox = new System.Windows.Forms.CheckBox();
+            this.rememberMeCheckBox = new System.Windows.Forms.CheckBox();
             this.loginButton = new System.Windows.Forms.Button();
             this.leftLine = new System.Windows.Forms.Panel();
             this.rightLine = new System.Windows.Forms.Panel();
@@ -84,7 +78,7 @@ namespace GreenByte
             // 
             // mainPanel
             // 
-            this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.mainPanel.BackColor = System.Drawing.Color.White;
             this.mainPanel.Controls.Add(this.topBar);
             this.mainPanel.Controls.Add(this.leftPanel);
             this.mainPanel.Controls.Add(this.rightPanel);
@@ -145,10 +139,10 @@ namespace GreenByte
             this.backgroundImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.backgroundImage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backgroundImage.BackgroundImage")));
             this.backgroundImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.backgroundImage.Location = new System.Drawing.Point(0, 0);
+            this.backgroundImage.Location = new System.Drawing.Point(0, 17);
             this.backgroundImage.Name = "backgroundImage";
             this.backgroundImage.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.backgroundImage.Size = new System.Drawing.Size(440, 565);
+            this.backgroundImage.Size = new System.Drawing.Size(469, 533);
             this.backgroundImage.TabIndex = 0;
             this.backgroundImage.TabStop = false;
             // 
@@ -173,7 +167,7 @@ namespace GreenByte
             // 
             // rightPanel
             // 
-            this.rightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.rightPanel.BackColor = System.Drawing.Color.White;
             this.rightPanel.Controls.Add(this.welcomeLabel);
             this.rightPanel.Controls.Add(this.subTitleLabel);
             this.rightPanel.Controls.Add(this.userLabel);
@@ -182,15 +176,14 @@ namespace GreenByte
             this.rightPanel.Controls.Add(this.passwordLabel);
             this.rightPanel.Controls.Add(this.passwordTextBox);
             this.rightPanel.Controls.Add(this.passwordUnderlinePanel);
-            this.rightPanel.Controls.Add(this.forgotPasswordLink);
-            this.rightPanel.Controls.Add(this.rememberCheckBox);
+            this.rightPanel.Controls.Add(this.rememberMeCheckBox);
             this.rightPanel.Controls.Add(this.loginButton);
             this.rightPanel.Controls.Add(this.leftLine);
             this.rightPanel.Controls.Add(this.rightLine);
             this.rightPanel.Controls.Add(this.copyrightLabel);
             this.rightPanel.Location = new System.Drawing.Point(420, 35);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(420, 565);
+            this.rightPanel.Size = new System.Drawing.Size(425, 565);
             this.rightPanel.TabIndex = 2;
             // 
             // welcomeLabel
@@ -208,7 +201,7 @@ namespace GreenByte
             // 
             this.subTitleLabel.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.subTitleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(117)))), ((int)(((byte)(117)))));
-            this.subTitleLabel.Location = new System.Drawing.Point(75, 90);
+            this.subTitleLabel.Location = new System.Drawing.Point(75, 88);
             this.subTitleLabel.Name = "subTitleLabel";
             this.subTitleLabel.Size = new System.Drawing.Size(350, 30);
             this.subTitleLabel.TabIndex = 1;
@@ -220,7 +213,7 @@ namespace GreenByte
             this.userLabel.AutoSize = true;
             this.userLabel.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.userLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(117)))), ((int)(((byte)(117)))));
-            this.userLabel.Location = new System.Drawing.Point(55, 150);
+            this.userLabel.Location = new System.Drawing.Point(55, 164);
             this.userLabel.Name = "userLabel";
             this.userLabel.Size = new System.Drawing.Size(82, 19);
             this.userLabel.TabIndex = 2;
@@ -231,7 +224,7 @@ namespace GreenByte
             this.userTextBox.BackColor = System.Drawing.Color.White;
             this.userTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.userTextBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.userTextBox.Location = new System.Drawing.Point(55, 180);
+            this.userTextBox.Location = new System.Drawing.Point(55, 186);
             this.userTextBox.Name = "userTextBox";
             this.userTextBox.Size = new System.Drawing.Size(390, 22);
             this.userTextBox.TabIndex = 3;
@@ -249,7 +242,7 @@ namespace GreenByte
             this.passwordLabel.AutoSize = true;
             this.passwordLabel.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.passwordLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(117)))), ((int)(((byte)(117)))));
-            this.passwordLabel.Location = new System.Drawing.Point(55, 240);
+            this.passwordLabel.Location = new System.Drawing.Point(55, 249);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(35, 19);
             this.passwordLabel.TabIndex = 5;
@@ -260,7 +253,7 @@ namespace GreenByte
             this.passwordTextBox.BackColor = System.Drawing.Color.White;
             this.passwordTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.passwordTextBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.passwordTextBox.Location = new System.Drawing.Point(55, 265);
+            this.passwordTextBox.Location = new System.Drawing.Point(55, 271);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(390, 22);
             this.passwordTextBox.TabIndex = 6;
@@ -274,28 +267,16 @@ namespace GreenByte
             this.passwordUnderlinePanel.Size = new System.Drawing.Size(390, 1);
             this.passwordUnderlinePanel.TabIndex = 7;
             // 
-            // forgotPasswordLink
+            // rememberMeCheckBox
             // 
-            this.forgotPasswordLink.AutoSize = true;
-            this.forgotPasswordLink.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.forgotPasswordLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-            this.forgotPasswordLink.Location = new System.Drawing.Point(325, 310);
-            this.forgotPasswordLink.Name = "forgotPasswordLink";
-            this.forgotPasswordLink.Size = new System.Drawing.Size(95, 15);
-            this.forgotPasswordLink.TabIndex = 8;
-            this.forgotPasswordLink.TabStop = true;
-            this.forgotPasswordLink.Text = "Şifremi Unuttum";
-            // 
-            // rememberCheckBox
-            // 
-            this.rememberCheckBox.AutoSize = true;
-            this.rememberCheckBox.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.rememberCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(117)))), ((int)(((byte)(117)))));
-            this.rememberCheckBox.Location = new System.Drawing.Point(55, 310);
-            this.rememberCheckBox.Name = "rememberCheckBox";
-            this.rememberCheckBox.Size = new System.Drawing.Size(98, 23);
-            this.rememberCheckBox.TabIndex = 9;
-            this.rememberCheckBox.Text = "Beni Hatırla";
+            this.rememberMeCheckBox.AutoSize = true;
+            this.rememberMeCheckBox.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.rememberMeCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(117)))), ((int)(((byte)(117)))));
+            this.rememberMeCheckBox.Location = new System.Drawing.Point(55, 310);
+            this.rememberMeCheckBox.Name = "rememberMeCheckBox";
+            this.rememberMeCheckBox.Size = new System.Drawing.Size(98, 23);
+            this.rememberMeCheckBox.TabIndex = 9;
+            this.rememberMeCheckBox.Text = "Beni Hatırla";
             // 
             // loginButton
             // 
@@ -339,12 +320,12 @@ namespace GreenByte
             this.copyrightLabel.Text = "© 2025 GreenByte Ltd. Şti. Tüm hakları saklıdır.";
             this.copyrightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // LoginForm
+            // FormLogin
             // 
             this.ClientSize = new System.Drawing.Size(900, 600);
             this.Controls.Add(this.mainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "LoginForm";
+            this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GreenByte Sera Yönetim Sistemi - Giriş";
             this.mainPanel.ResumeLayout(false);
@@ -357,5 +338,10 @@ namespace GreenByte
             this.ResumeLayout(false);
 
         }
+
+        private Panel leftPanel;
+        private PictureBox backgroundImage;
+        private Panel gradientPanel;
+        private Label sloganLabel;
     }
 }

@@ -28,10 +28,125 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridViewDatas = new System.Windows.Forms.DataGridView();
+            this.labelBaslik = new System.Windows.Forms.Label();
+            this.panelButonlar = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDatas)).BeginInit();
+            this.panelButonlar.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dataGridViewDatas);
+            this.panel1.Controls.Add(this.labelBaslik);
+            this.panel1.Controls.Add(this.panelButonlar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(15);
+            this.panel1.Size = new System.Drawing.Size(900, 600);
+            this.panel1.TabIndex = 1;
+            // 
+            // dataGridViewDatas
+            // 
+            this.dataGridViewDatas.AllowUserToAddRows = false;
+            this.dataGridViewDatas.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dataGridViewDatas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewDatas.Location = new System.Drawing.Point(15, 55);
+            this.dataGridViewDatas.MultiSelect = false;
+            this.dataGridViewDatas.Name = "dataGridViewDatas";
+            this.dataGridViewDatas.ReadOnly = true;
+            this.dataGridViewDatas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewDatas.Size = new System.Drawing.Size(870, 480);
+            this.dataGridViewDatas.TabIndex = 4;
+            // 
+            // labelBaslik
+            // 
+            this.labelBaslik.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelBaslik.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.labelBaslik.Location = new System.Drawing.Point(15, 15);
+            this.labelBaslik.Name = "labelBaslik";
+            this.labelBaslik.Size = new System.Drawing.Size(870, 40);
+            this.labelBaslik.TabIndex = 3;
+            this.labelBaslik.Text = "Geçmiş Veri Ölçümleri";
+            // 
+            // panelButonlar
+            // 
+            this.panelButonlar.Controls.Add(this.dateTimePicker1);
+            this.panelButonlar.Controls.Add(this.label2);
+            this.panelButonlar.Controls.Add(this.label1);
+            this.panelButonlar.Controls.Add(this.comboBox1);
+            this.panelButonlar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelButonlar.Location = new System.Drawing.Point(15, 535);
+            this.panelButonlar.Name = "panelButonlar";
+            this.panelButonlar.Size = new System.Drawing.Size(870, 50);
+            this.panelButonlar.TabIndex = 5;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(103, 13);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Location = new System.Drawing.Point(18, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 17);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Sensör Seçin";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label2.Location = new System.Drawing.Point(250, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 17);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Tarih Seçin";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(323, 13);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(104, 20);
+            this.dateTimePicker1.TabIndex = 7;
+            // 
+            // DataControlPage
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel1);
+            this.Name = "DataControlPage";
+            this.Size = new System.Drawing.Size(900, 600);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDatas)).EndInit();
+            this.panelButonlar.ResumeLayout(false);
+            this.panelButonlar.PerformLayout();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridView dataGridViewDatas;
+        private System.Windows.Forms.Label labelBaslik;
+        private System.Windows.Forms.Panel panelButonlar;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

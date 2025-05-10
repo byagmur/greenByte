@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace GreenByte.Models
 {
@@ -10,4 +10,10 @@ namespace GreenByte.Models
         public string Location { get; set; }
         public DateTime CreationDate { get; set; }
     }
+
+  public static class CurrentGreenhouse
+    {
+        public static Greenhouse Selected { get; set; }
+    }
+    
 }
