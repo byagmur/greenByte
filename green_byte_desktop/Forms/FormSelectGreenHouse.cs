@@ -9,7 +9,7 @@ namespace greenByte.Forms
 {
     public partial class FormSelectGreenHouse : Form
     {
-        public Greenhouse SelectedGreenhouse { get; private set; }
+        public GreenHouseModel SelectedGreenhouse { get; private set; }
 
         public FormSelectGreenHouse()
         {
@@ -53,7 +53,7 @@ namespace greenByte.Forms
 
         private void buttonDevam_Click(object sender, EventArgs e)
         {
-            SelectedGreenhouse = comboBoxGreenHouse.SelectedItem as Greenhouse;
+            SelectedGreenhouse = comboBoxGreenHouse.SelectedItem as GreenHouseModel;
             if (SelectedGreenhouse == null)
             {
                 MessageBox.Show("Lütfen bir sera seçiniz!");

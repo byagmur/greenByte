@@ -130,6 +130,12 @@
     <Compile Include="DataAccess\UserDataAccess.cs" />
     <Compile Include="DataAccess\WeatherDatasDataAccess.cs" />
     <Compile Include="DBContext.cs" />
+    <Compile Include="Forms\FormGreenHouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormGreenHouse.Designer.cs">
+      <DependentUpon>FormGreenHouse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,11 +194,11 @@
     <Compile Include="Pages\MoistureControlPage.Designer.cs">
       <DependentUpon>MoistureControlPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SeraYonetimPage.cs">
+    <Compile Include="Pages\GreenHouseManagementPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pages\SeraYonetimPage.Designer.cs">
-      <DependentUpon>SeraYonetimPage.cs</DependentUpon>
+    <Compile Include="Pages\GreenHouseManagementPage.Designer.cs">
+      <DependentUpon>GreenHouseManagementPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\TemperatureControlPage.cs">
       <SubType>UserControl</SubType>
@@ -214,6 +220,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="Forms\FormGreenHouse.resx">
+      <DependentUpon>FormGreenHouse.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,8 +242,8 @@
     <EmbeddedResource Include="Pages\DataControlPage.resx">
       <DependentUpon>DataControlPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\SeraYonetimPage.resx">
-      <DependentUpon>SeraYonetimPage.cs</DependentUpon>
+    <EmbeddedResource Include="Pages\GreenHouseManagementPage.resx">
+      <DependentUpon>GreenHouseManagementPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\TemperatureControlPage.resx">
       <DependentUpon>TemperatureControlPage.cs</DependentUpon>

@@ -32,22 +32,26 @@ namespace greenByte.Pages
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridViewKullanicilar = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxSearchUser = new System.Windows.Forms.TextBox();
+            this.buttonRefreshData = new System.Windows.Forms.Button();
+            this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
             this.labelBaslik = new System.Windows.Forms.Label();
             this.panelButonlar = new System.Windows.Forms.Panel();
             this.btnKullaniciEkle = new System.Windows.Forms.Button();
             this.btnDuzenle = new System.Windows.Forms.Button();
             this.btnSil = new System.Windows.Forms.Button();
-            this.buttonRefreshData = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKullanicilar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             this.panelButonlar.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.textBoxSearchUser);
             this.panel1.Controls.Add(this.buttonRefreshData);
-            this.panel1.Controls.Add(this.dataGridViewKullanicilar);
+            this.panel1.Controls.Add(this.dataGridViewUsers);
             this.panel1.Controls.Add(this.labelBaslik);
             this.panel1.Controls.Add(this.panelButonlar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -57,18 +61,49 @@ namespace greenByte.Pages
             this.panel1.Size = new System.Drawing.Size(998, 616);
             this.panel1.TabIndex = 0;
             // 
-            // dataGridViewKullanicilar
+            // label1
             // 
-            this.dataGridViewKullanicilar.AllowUserToAddRows = false;
-            this.dataGridViewKullanicilar.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridViewKullanicilar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewKullanicilar.Location = new System.Drawing.Point(15, 55);
-            this.dataGridViewKullanicilar.MultiSelect = false;
-            this.dataGridViewKullanicilar.Name = "dataGridViewKullanicilar";
-            this.dataGridViewKullanicilar.ReadOnly = true;
-            this.dataGridViewKullanicilar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewKullanicilar.Size = new System.Drawing.Size(968, 496);
-            this.dataGridViewKullanicilar.TabIndex = 4;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Location = new System.Drawing.Point(721, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 19);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Arama yapın";
+            // 
+            // textBoxSearchUser
+            // 
+            this.textBoxSearchUser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textBoxSearchUser.Location = new System.Drawing.Point(813, 24);
+            this.textBoxSearchUser.Name = "textBoxSearchUser";
+            this.textBoxSearchUser.Size = new System.Drawing.Size(147, 23);
+            this.textBoxSearchUser.TabIndex = 8;
+            this.textBoxSearchUser.TextChanged += new System.EventHandler(this.textBoxSearchUser_TextChanged);
+            // 
+            // buttonRefreshData
+            // 
+            this.buttonRefreshData.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonRefreshData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRefreshData.Image = global::greenByte.Properties.Resources.ic__round_refresh__24px_;
+            this.buttonRefreshData.Location = new System.Drawing.Point(213, 17);
+            this.buttonRefreshData.Name = "buttonRefreshData";
+            this.buttonRefreshData.Size = new System.Drawing.Size(31, 31);
+            this.buttonRefreshData.TabIndex = 6;
+            this.buttonRefreshData.UseVisualStyleBackColor = true;
+            this.buttonRefreshData.Click += new System.EventHandler(this.buttonRefreshData_Click);
+            // 
+            // dataGridViewUsers
+            // 
+            this.dataGridViewUsers.AllowUserToAddRows = false;
+            this.dataGridViewUsers.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dataGridViewUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewUsers.Location = new System.Drawing.Point(15, 55);
+            this.dataGridViewUsers.MultiSelect = false;
+            this.dataGridViewUsers.Name = "dataGridViewUsers";
+            this.dataGridViewUsers.ReadOnly = true;
+            this.dataGridViewUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewUsers.Size = new System.Drawing.Size(968, 496);
+            this.dataGridViewUsers.TabIndex = 4;
             // 
             // labelBaslik
             // 
@@ -136,25 +171,14 @@ namespace greenByte.Pages
             this.btnSil.UseVisualStyleBackColor = false;
             this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
             // 
-            // buttonRefreshData
-            // 
-            this.buttonRefreshData.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonRefreshData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonRefreshData.Image = global::greenByte.Properties.Resources.ic__round_refresh__24px_;
-            this.buttonRefreshData.Location = new System.Drawing.Point(213, 17);
-            this.buttonRefreshData.Name = "buttonRefreshData";
-            this.buttonRefreshData.Size = new System.Drawing.Size(31, 31);
-            this.buttonRefreshData.TabIndex = 6;
-            this.buttonRefreshData.UseVisualStyleBackColor = true;
-            this.buttonRefreshData.Click += new System.EventHandler(this.buttonRefreshData_Click);
-            // 
             // UsersControlPage
             // 
             this.Controls.Add(this.panel1);
             this.Name = "UsersControlPage";
             this.Size = new System.Drawing.Size(998, 616);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKullanicilar)).EndInit();
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
             this.panelButonlar.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -164,11 +188,13 @@ namespace greenByte.Pages
 
         private Panel panel1;
         private Label labelBaslik;
-        private DataGridView dataGridViewKullanicilar;
+        private DataGridView dataGridViewUsers;
         private Panel panelButonlar;
         private Button btnKullaniciEkle;
         private Button btnDuzenle;
         private Button btnSil;
         private Button buttonRefreshData;
+        private Label label1;
+        private TextBox textBoxSearchUser;
     }
 }

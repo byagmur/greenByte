@@ -66,6 +66,9 @@ namespace GreenByte
                 {
                     CurrentUser.User = user;
 
+                    CurrentUser.Id = user.Id;
+
+
                     // Login formunu gizle
                     this.Hide();
 
@@ -75,8 +78,7 @@ namespace GreenByte
                     {
 
                         CurrentGreenhouse.Selected = seraSecForm.SelectedGreenhouse;
-                        CurrentUser.Id = user.Id;
-
+    
                         // Ana formu aç
                         var mainForm = new FormMain();
                         mainForm.Show();
@@ -121,7 +123,6 @@ namespace GreenByte
             Application.Exit();
             LogDataAccess.Add(new LogModel
             {
-                UserId = CurrentUser.Id,
                 LogType = LogType.Info,
                 Message = "Kullanıcı uygulamadan çıktı.",
                 LogTime = DateTime.Now

@@ -3,13 +3,13 @@ using System.Windows.Forms;
 
 namespace greenByte.Pages
 {
-    partial class SeraYonetimPage
+    partial class GreenHouseManagementPage
     {
         private System.ComponentModel.IContainer components = null;
 
         private Panel panel1;
         private Label labelBaslik;
-        private DataGridView dataGridViewSeralar;
+        private DataGridView dataGridViewGreenHouses;
         private Panel panelButonlar;
         private Button btnEkle;
         private Button btnDuzenle;
@@ -18,20 +18,20 @@ namespace greenByte.Pages
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridViewSeralar = new System.Windows.Forms.DataGridView();
+            this.dataGridViewGreenHouses = new System.Windows.Forms.DataGridView();
             this.labelBaslik = new System.Windows.Forms.Label();
             this.panelButonlar = new System.Windows.Forms.Panel();
             this.btnEkle = new System.Windows.Forms.Button();
             this.btnDuzenle = new System.Windows.Forms.Button();
             this.btnSil = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeralar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGreenHouses)).BeginInit();
             this.panelButonlar.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.dataGridViewSeralar);
+            this.panel1.Controls.Add(this.dataGridViewGreenHouses);
             this.panel1.Controls.Add(this.labelBaslik);
             this.panel1.Controls.Add(this.panelButonlar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -41,18 +41,18 @@ namespace greenByte.Pages
             this.panel1.Size = new System.Drawing.Size(998, 616);
             this.panel1.TabIndex = 0;
             // 
-            // dataGridViewSeralar
+            // dataGridViewGreenHouses
             // 
-            this.dataGridViewSeralar.AllowUserToAddRows = false;
-            this.dataGridViewSeralar.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridViewSeralar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewSeralar.Location = new System.Drawing.Point(15, 55);
-            this.dataGridViewSeralar.MultiSelect = false;
-            this.dataGridViewSeralar.Name = "dataGridViewSeralar";
-            this.dataGridViewSeralar.ReadOnly = true;
-            this.dataGridViewSeralar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSeralar.Size = new System.Drawing.Size(968, 496);
-            this.dataGridViewSeralar.TabIndex = 4;
+            this.dataGridViewGreenHouses.AllowUserToAddRows = false;
+            this.dataGridViewGreenHouses.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dataGridViewGreenHouses.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewGreenHouses.Location = new System.Drawing.Point(15, 55);
+            this.dataGridViewGreenHouses.MultiSelect = false;
+            this.dataGridViewGreenHouses.Name = "dataGridViewGreenHouses";
+            this.dataGridViewGreenHouses.ReadOnly = true;
+            this.dataGridViewGreenHouses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewGreenHouses.Size = new System.Drawing.Size(968, 496);
+            this.dataGridViewGreenHouses.TabIndex = 4;
             // 
             // labelBaslik
             // 
@@ -88,6 +88,7 @@ namespace greenByte.Pages
             this.btnEkle.TabIndex = 0;
             this.btnEkle.Text = "Ekle";
             this.btnEkle.UseVisualStyleBackColor = false;
+            this.btnEkle.Click += new System.EventHandler(this.btnEkle_Click);
             // 
             // btnDuzenle
             // 
@@ -102,6 +103,7 @@ namespace greenByte.Pages
             this.btnDuzenle.TabIndex = 1;
             this.btnDuzenle.Text = "Düzenle";
             this.btnDuzenle.UseVisualStyleBackColor = false;
+            this.btnDuzenle.Click += new System.EventHandler(this.btnDuzenle_Click);
             // 
             // btnSil
             // 
@@ -116,14 +118,15 @@ namespace greenByte.Pages
             this.btnSil.TabIndex = 2;
             this.btnSil.Text = "Sil";
             this.btnSil.UseVisualStyleBackColor = false;
+            this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
             // 
-            // SeraYonetimPage
+            // GreenHouseManagement
             // 
             this.Controls.Add(this.panel1);
-            this.Name = "SeraYonetimPage";
+            this.Name = "GreenHouseManagement";
             this.Size = new System.Drawing.Size(998, 616);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeralar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGreenHouses)).EndInit();
             this.panelButonlar.ResumeLayout(false);
             this.ResumeLayout(false);
 

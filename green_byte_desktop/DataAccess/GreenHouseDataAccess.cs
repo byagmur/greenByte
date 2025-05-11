@@ -7,25 +7,25 @@ namespace GreenByte.DataAccess
 {
     public class GreenHouseDataAccess
     {
-        public List<Greenhouse> GetAll()
+        public List<GreenHouseModel> GetAll()
         {
             using (var connection = DBContext.GetConnection())
             {
                 string sql = "SELECT id AS Id, kullanici_id AS UserId, ad AS Name, konum AS Location, olusturma_tarihi AS CreationDate FROM seralar";
-                return connection.Query<Greenhouse>(sql).ToList();
+                return connection.Query<GreenHouseModel>(sql).ToList();
             }
         }
 
-        public Greenhouse GetById(int id)
+        public GreenHouseModel GetById(int id)
         {
             using (var connection = DBContext.GetConnection())
             {
                 string sql = "SELECT id AS Id, kullanici_id AS UserId, ad AS Name, konum AS Location, olusturma_tarihi AS CreationDate FROM seralar WHERE id = @Id";
-                return connection.QueryFirstOrDefault<Greenhouse>(sql, new { Id = id });
+                return connection.QueryFirstOrDefault<GreenHouseModel>(sql, new { Id = id });
             }
         }
 
-        public void Add(Greenhouse greenhouse)
+        public void Add(GreenHouseModel greenhouse)
         {
             using (var connection = DBContext.GetConnection())
             {
@@ -34,7 +34,7 @@ namespace GreenByte.DataAccess
             }
         }
 
-        public void Update(Greenhouse greenhouse)
+        public void Update(GreenHouseModel greenhouse)
         {
             using (var connection = DBContext.GetConnection())
             {

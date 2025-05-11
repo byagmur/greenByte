@@ -109,10 +109,11 @@
             this.buttonDevam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
             this.buttonDevam.FlatAppearance.BorderSize = 0;
             this.buttonDevam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDevam.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.buttonDevam.ForeColor = System.Drawing.Color.White;
             this.buttonDevam.Location = new System.Drawing.Point(172, 164);
             this.buttonDevam.Name = "buttonDevam";
-            this.buttonDevam.Size = new System.Drawing.Size(85, 34);
+            this.buttonDevam.Size = new System.Drawing.Size(95, 34);
             this.buttonDevam.TabIndex = 14;
             this.buttonDevam.Text = "Devam";
             this.buttonDevam.UseVisualStyleBackColor = false;

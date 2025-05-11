@@ -83,7 +83,7 @@ namespace greenByte.Forms
                         });
                         break;
                     case "buttonSeraYonetimPage":
-                        clearAndAddControl(new SeraYonetimPage());
+                        clearAndAddControl(new GreenHouseManagementPage());
                         LogDataAccess.Add(new LogModel
                         {
                             UserId = CurrentUser.Id,

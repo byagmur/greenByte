@@ -18,7 +18,7 @@ namespace greenByte.Pages
             
             InitializeComponent();
             LoadUsers();
-            StyleDataGrid();
+            Utils.StyleDataGrid(dataGridViewUsers);
         }
 
         private void LoadUsers()
@@ -30,40 +30,20 @@ namespace greenByte.Pages
             // Filtreleme ve DataGridView doldurma
             var filteredUsers = users.Where(u => u.GreenhouseId == seraId).ToList();
 
-            dataGridViewKullanicilar.DataSource = filteredUsers;
+            dataGridViewUsers.DataSource = filteredUsers;
 
             // Kolon başlıklarını düzenle
-            dataGridViewKullanicilar.Columns["Id"].HeaderText = "ID";
-            dataGridViewKullanicilar.Columns["Id"].Visible = false;
-            dataGridViewKullanicilar.Columns["Username"].HeaderText = "Kullanıcı Adı";
-            dataGridViewKullanicilar.Columns["Email"].HeaderText = "E-posta";
-            dataGridViewKullanicilar.Columns["RegistrationDate"].HeaderText = "Kayıt Tarihi";
-            dataGridViewKullanicilar.Columns["GreenhouseId"].HeaderText = "Sera ID";
-            dataGridViewKullanicilar.Columns["GreenhouseId"].Visible = false;
-            dataGridViewKullanicilar.Columns["Password"].Visible = false; // Şifreyi gizle
+            dataGridViewUsers.Columns["Id"].HeaderText = "ID";
+            dataGridViewUsers.Columns["Id"].Visible = false;
+            dataGridViewUsers.Columns["Username"].HeaderText = "Kullanıcı Adı";
+            dataGridViewUsers.Columns["Email"].HeaderText = "E-posta";
+            dataGridViewUsers.Columns["RegistrationDate"].HeaderText = "Kayıt Tarihi";
+            dataGridViewUsers.Columns["GreenhouseId"].HeaderText = "Sera ID";
+            dataGridViewUsers.Columns["GreenhouseId"].Visible = false;
+            dataGridViewUsers.Columns["Password"].Visible = false; // Şifreyi gizle
         }
 
-        private void StyleDataGrid()
-        {
-            var dgv = dataGridViewKullanicilar;
-            dgv.EnableHeadersVisualStyles = false;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(46, 125, 50);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
-            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 10);
-            dgv.DefaultCellStyle.BackColor = Color.White;
-            dgv.DefaultCellStyle.ForeColor = Color.Black;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(200, 230, 201);
-            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
-            dgv.RowHeadersVisible = false;
-            dgv.BorderStyle = BorderStyle.None;
-            dgv.GridColor = Color.LightGray;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.MultiSelect = false;
-            dgv.RowTemplate.Height = 32;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(232, 245, 233);
-        }
+       
 
         private void btnKullaniciEkle_Click(object sender, EventArgs e)
         {
@@ -99,8 +79,8 @@ namespace greenByte.Pages
 
         private void btnDuzenle_Click(object sender, EventArgs e)
         {
-            if (dataGridViewKullanicilar.CurrentRow == null) return;
-            var selectedUser = dataGridViewKullanicilar.CurrentRow.DataBoundItem as UserModel;
+            if (dataGridViewUsers.CurrentRow == null) return;
+            var selectedUser = dataGridViewUsers.CurrentRow.DataBoundItem as UserModel;
             if (selectedUser == null) return;
 
             var userCopy = new UserModel
@@ -145,8 +125,8 @@ namespace greenByte.Pages
 
         private void btnSil_Click(object sender, EventArgs e)
         {
-            if (dataGridViewKullanicilar.CurrentRow == null) return;
-            var selectedUser = dataGridViewKullanicilar.CurrentRow.DataBoundItem as UserModel;
+            if (dataGridViewUsers.CurrentRow == null) return;
+            var selectedUser = dataGridViewUsers.CurrentRow.DataBoundItem as UserModel;
             if (selectedUser == null) return;
 
             var result = MessageBox.Show("Kullanıcıyı silmek istediğinize emin misiniz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -181,6 +161,18 @@ namespace greenByte.Pages
         private void buttonRefreshData_Click(object sender, EventArgs e)
         {
             LoadUsers();
+        }
+
+        private void textBoxSearchUser_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = textBoxSearchUser.Text.ToLower();
+            var seraId = CurrentGreenhouse.Selected?.Id ?? 0;
+            var users = userDal.GetAll();
+            var filteredUsers = users.Where(u => u.GreenhouseId == seraId &&
+                (u.Username.ToLower().Contains(searchText) ||
+                 u.Email.ToLower().Contains(searchText)))
+                .ToList();
+            dataGridViewUsers.DataSource = filteredUsers;
         }
     }
 }
