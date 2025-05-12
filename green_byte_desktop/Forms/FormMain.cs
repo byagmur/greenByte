@@ -23,14 +23,10 @@ namespace greenByte.Forms
             this.buttonDashboardPage.Click += new System.EventHandler(this.buttonPage_Click);
             this.buttonUserControlPage.Click += new System.EventHandler(this.buttonPage_Click);
             this.buttonDataControlPage.Click += new System.EventHandler(this.buttonPage_Click);
-            //this.buttonLightControlPage.Click += new System.EventHandler(this.buttonPage_Click);
-            //this.buttonMouistControlPage.Click += new System.EventHandler(this.buttonPage_Click);
-            //this.buttonTempControlPage.Click += new System.EventHandler(this.buttonPage_Click);
-            //this.buttonWaterControlPage.Click += new System.EventHandler(this.buttonPage_Click);
             this.buttonSeraYonetimPage.Click += new System.EventHandler(this.buttonPage_Click);
-            //this.buttonLogView.Click += new System.EventHandler(this.buttonPage_Click);
             labelUsername.Text = CurrentUser.User.Username;
-            // labelGreenHouse.Text = CurrentUser.User.GreenHouse;
+
+            clearAndAddControl(new AdminDashboardPage());
 
         }
 
@@ -104,35 +100,12 @@ namespace greenByte.Forms
                            Message = "Kullanıcı veri yönetim sayfasına yönlendirildi.",
                            LogTime = DateTime.Now
                        });
-                       break;
-                    //case "buttonLightControlPage":
-                    //   clearAndAddControl(new LightControlPage());
-                    //   break;
-                    //case "buttonMouistControlPage":
-                    //    clearAndAddControl(new MoistureControlPage());
-                    //    break;                    
-                    //case "buttonWaterControlPage":
-                    //    clearAndAddControl(new WaterControlPage());
-                    //    break;
-                    /*
-                    case "buttonLogView":
-                        clearAndAddControl(new LogViewPage());
-                        LogDataAccess.Add(new LogModel
-                        {
-                            UserId = CurrentUser.Id,
-                            LogType = LogType.Info,
-                            Message = "Kullanıcı hareket geçmişi sayfasına yönlendirildi.",
-                            LogTime = DateTime.Now
-                        });
-                        break;
-                    */
-                    
+                       break;            
                     default:
                         clearAndAddControl(new AdminDashboardPage());
                         break;
                 }
 
-                //MessageBox.Show($"TablePanel kontrol sayısı: {tablePanel1.Controls.Count}");
 
             }
         }

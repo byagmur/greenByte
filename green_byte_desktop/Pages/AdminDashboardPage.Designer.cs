@@ -30,9 +30,6 @@ namespace greenByte.Controls
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonManuel = new System.Windows.Forms.Button();
-            this.buttonOto = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -59,7 +56,6 @@ namespace greenByte.Controls
             this.labelNem = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSicaklikVeNem)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -72,53 +68,11 @@ namespace greenByte.Controls
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.buttonManuel);
-            this.panel1.Controls.Add(this.buttonOto);
-            this.panel1.Controls.Add(this.label3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(998, 78);
             this.panel1.TabIndex = 0;
-            // 
-            // buttonManuel
-            // 
-            this.buttonManuel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
-            this.buttonManuel.Enabled = false;
-            this.buttonManuel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.buttonManuel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonManuel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.buttonManuel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.buttonManuel.Location = new System.Drawing.Point(883, 37);
-            this.buttonManuel.Name = "buttonManuel";
-            this.buttonManuel.Size = new System.Drawing.Size(87, 31);
-            this.buttonManuel.TabIndex = 3;
-            this.buttonManuel.Text = "Manuel";
-            this.buttonManuel.UseVisualStyleBackColor = false;
-            // 
-            // buttonOto
-            // 
-            this.buttonOto.Enabled = false;
-            this.buttonOto.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.buttonOto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOto.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.buttonOto.Location = new System.Drawing.Point(795, 37);
-            this.buttonOto.Name = "buttonOto";
-            this.buttonOto.Size = new System.Drawing.Size(87, 31);
-            this.buttonOto.TabIndex = 2;
-            this.buttonOto.Text = "Otomatik";
-            this.buttonOto.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label3.Location = new System.Drawing.Point(808, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(153, 21);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Sera Kontrol Modu";
             // 
             // panel2
             // 
@@ -135,13 +89,13 @@ namespace greenByte.Controls
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label11.ForeColor = System.Drawing.Color.LightGray;
             this.label11.Location = new System.Drawing.Point(57, 351);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(625, 13);
+            this.label11.Size = new System.Drawing.Size(535, 13);
             this.label11.TabIndex = 9;
             this.label11.Text = "_________________________________________________________________________________" +
-    "______________________";
+    "_______";
             // 
             // label9
             // 
@@ -421,8 +375,6 @@ namespace greenByte.Controls
             this.Controls.Add(this.panel1);
             this.Name = "AdminDashboardPage";
             this.Size = new System.Drawing.Size(998, 616);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSicaklikVeNem)).EndInit();
@@ -447,9 +399,6 @@ namespace greenByte.Controls
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button buttonManuel;
-        private System.Windows.Forms.Button buttonOto;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel10;

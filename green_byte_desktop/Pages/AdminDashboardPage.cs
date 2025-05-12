@@ -43,22 +43,18 @@ namespace greenByte.Controls
         {
             var sensorDataAccess = new SensorDataAccess();
 
-            // Sıcaklık sensörünün son verisi (id: 6)
             var sicaklikData = sensorDataAccess.GetBySensorId(1).OrderByDescending(d => d.RecordTime).FirstOrDefault();
             if (sicaklikData != null)
                 labelSicaklik.Text = $"{sicaklikData.Value} °C";
 
-            // Nem sensörünün son verisi (id: 7)
             var nemData = sensorDataAccess.GetBySensorId(2).OrderByDescending(d => d.RecordTime).FirstOrDefault();
             if (nemData != null)
                 labelNem.Text = $"{nemData.Value} %";
 
-            // Toprak nemi sensörünün son verisi (id: 7)
             var toprakNemData = sensorDataAccess.GetBySensorId(4).OrderByDescending(d => d.RecordTime).FirstOrDefault();
             if (toprakNemData != null)
                 labelToprakNem.Text = $"{toprakNemData.Value} %";
 
-            // Işık seviyesi sensörünün son verisi (id: 9)
             var isikData = sensorDataAccess.GetBySensorId(3).OrderByDescending(d => d.RecordTime).FirstOrDefault();
             if (isikData != null)
                 labelIsik.Text = $"{isikData.Value} lux";
@@ -91,8 +87,8 @@ namespace greenByte.Controls
             var sensorDataAccess = new SensorDataAccess();
 
             // Sıcaklık ve nem sensörlerinin id'si 6 ise:
-            var sicaklikVerileri = sensorDataAccess.GetBySensorId(6);
-            var nemVerileri = sensorDataAccess.GetBySensorId(7); // Eğer nem sensörünün id'si 7 ise
+            var sicaklikVerileri = sensorDataAccess.GetBySensorId(1);
+            var nemVerileri = sensorDataAccess.GetBySensorId(2); // Eğer nem sensörünün id'si 7 ise
 
             // X ekseni için saat/zaman bilgisini kullan
             foreach (var data in sicaklikVerileri.Cast<SensorData>())
