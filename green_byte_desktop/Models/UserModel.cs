@@ -12,6 +12,13 @@ namespace GreenByte.Models
         public DateTime RegistrationDate { get; set; }
 
         public int GreenhouseId { get; set; }
+
+
+        // ToString metodu, ComboBox'ta doğru görünmesi için
+        public override string ToString()
+        {
+            return Username;
+        }
     }
 
     

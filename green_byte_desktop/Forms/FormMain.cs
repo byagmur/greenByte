@@ -28,7 +28,7 @@ namespace greenByte.Forms
             //this.buttonTempControlPage.Click += new System.EventHandler(this.buttonPage_Click);
             //this.buttonWaterControlPage.Click += new System.EventHandler(this.buttonPage_Click);
             this.buttonSeraYonetimPage.Click += new System.EventHandler(this.buttonPage_Click);
-
+            //this.buttonLogView.Click += new System.EventHandler(this.buttonPage_Click);
             labelUsername.Text = CurrentUser.User.Username;
             // labelGreenHouse.Text = CurrentUser.User.GreenHouse;
 
@@ -114,7 +114,19 @@ namespace greenByte.Forms
                     //case "buttonWaterControlPage":
                     //    clearAndAddControl(new WaterControlPage());
                     //    break;
-
+                    /*
+                    case "buttonLogView":
+                        clearAndAddControl(new LogViewPage());
+                        LogDataAccess.Add(new LogModel
+                        {
+                            UserId = CurrentUser.Id,
+                            LogType = LogType.Info,
+                            Message = "Kullanıcı hareket geçmişi sayfasına yönlendirildi.",
+                            LogTime = DateTime.Now
+                        });
+                        break;
+                    */
+                    
                     default:
                         clearAndAddControl(new AdminDashboardPage());
                         break;
@@ -149,6 +161,18 @@ namespace greenByte.Forms
 
             // Ana formu kapat
             this.Close();
+        }
+
+        private void buttonLogView_Click(object sender, EventArgs e)
+        {
+            clearAndAddControl(new LogViewPage());
+            LogDataAccess.Add(new LogModel
+            {
+                UserId = CurrentUser.Id,
+                LogType = LogType.Info,
+                Message = "Kullanıcı hareket geçmişi sayfasına yönlendirildi.",
+                LogTime = DateTime.Now
+            });
         }
     }
 }

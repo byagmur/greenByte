@@ -10,7 +10,6 @@ namespace GreenByte.Models
         public string Name { get; set; }
         public string Location { get; set; }
         public DateTime CreationDate { get; set; } // oluşturma tarihi
-        public DateTime EstablishmentDate { get; set; } // kurulus tarihi
     }
 
     public static class CurrentGreenhouse

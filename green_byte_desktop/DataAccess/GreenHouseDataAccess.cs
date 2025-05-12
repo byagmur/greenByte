@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using GreenByte.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,8 +30,16 @@ namespace GreenByte.DataAccess
         {
             using (var connection = DBContext.GetConnection())
             {
-                string sql = "INSERT INTO seralar (kullanici_id, ad, konum) VALUES (@UserId, @Name, @Location)";
-                connection.Execute(sql, greenhouse);
+                // Yerel saat kullanarak doğru tarih/saat kaydı
+                string sql = "INSERT INTO seralar (kullanici_id, ad, konum, olusturma_tarihi) VALUES (@UserId, @Name, @Location, @CreationDate)";
+                connection.Execute(sql, new
+                {
+                    UserId = greenhouse.UserId,
+                    Name = greenhouse.Name,
+                    Location = greenhouse.Location,
+                    // Yerel saat olarak kaydediyoruz
+                    CreationDate = DateTime.Now
+                });
             }
         }
 

@@ -1,13 +1,16 @@
+-- CREATE DATABASE greenbyte;
+
+-- 1. Kullanıcılar tablosu
 CREATE TABLE kullanicilar (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sera_id INT,
     kullanici_adi VARCHAR(50) UNIQUE NOT NULL,
     sifre VARCHAR(255) NOT NULL,
     email VARCHAR(100),
-    kayit_tarihi DATETIME DEFAULT CURRENT_TIMESTAMP,
+    kayit_tarihi DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-
+-- 2. Seralar tablosu
 CREATE TABLE seralar (
     id INT AUTO_INCREMENT PRIMARY KEY,
     kullanici_id INT,
@@ -17,7 +20,7 @@ CREATE TABLE seralar (
     FOREIGN KEY (kullanici_id) REFERENCES kullanicilar(id) ON DELETE CASCADE
 );
 
-
+-- 3. Cihazlar tablosu
 CREATE TABLE cihazlar (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sera_id INT,
@@ -27,8 +30,7 @@ CREATE TABLE cihazlar (
     FOREIGN KEY (sera_id) REFERENCES seralar(id) ON DELETE CASCADE
 );
 
-
-
+-- 4. Sensörler tablosu
 CREATE TABLE sensorler (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sera_id INT,
@@ -38,7 +40,7 @@ CREATE TABLE sensorler (
     FOREIGN KEY (sera_id) REFERENCES seralar(id) ON DELETE CASCADE
 );
 
-
+-- 5. Sensör Verileri tablosu
 CREATE TABLE sensor_verileri (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sensor_id INT,
@@ -47,8 +49,8 @@ CREATE TABLE sensor_verileri (
     FOREIGN KEY (sensor_id) REFERENCES sensorler(id) ON DELETE CASCADE
 );
 
-
-CREATE TABLE cihaz_olaylari(
+-- 6. Cihaz Olayları tablosu
+CREATE TABLE cihaz_olaylari (
     id INT AUTO_INCREMENT PRIMARY KEY,
     cihaz_id INT,
     islem ENUM('ac', 'kapat'),
@@ -57,7 +59,7 @@ CREATE TABLE cihaz_olaylari(
     FOREIGN KEY (cihaz_id) REFERENCES cihazlar(id) ON DELETE CASCADE
 );
 
-
+-- 7. Hava Durumu tablosu
 CREATE TABLE hava_durumu (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sera_id INT,
@@ -70,7 +72,7 @@ CREATE TABLE hava_durumu (
     FOREIGN KEY (sera_id) REFERENCES seralar(id) ON DELETE CASCADE
 );
 
-
+-- 8. Bitki Türleri tablosu
 CREATE TABLE bitki_turleri (
     id INT AUTO_INCREMENT PRIMARY KEY,
     tur_adi VARCHAR(100) NOT NULL,
@@ -90,7 +92,7 @@ CREATE TABLE bitki_turleri (
     eklenme_tarihi DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-
+-- 9. Bitkiler tablosu
 CREATE TABLE bitkiler (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sera_id INT NOT NULL,
@@ -106,10 +108,37 @@ CREATE TABLE bitkiler (
     FOREIGN KEY (bitki_tur_id) REFERENCES bitki_turleri(id)
 );
 
+-- 10. Log Kayıtları tablosu
 CREATE TABLE log_kayitlari (
     id INT AUTO_INCREMENT PRIMARY KEY,
     kullanici_id INT,
     log_tipi ENUM('Info', 'Error') NOT NULL,
     mesaj TEXT,
     log_zamani DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (kullanici_id) REFERENCES kullanicilar(id)
+);
+
+-- 11. Bildirimler tablosu
+CREATE TABLE bildirimler (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sera_id INT NOT NULL,
+    baslik VARCHAR(100) NOT NULL,
+    mesaj TEXT NOT NULL,
+    tur ENUM('info', 'success', 'warning', 'danger') DEFAULT 'info',
+    okundu BOOLEAN DEFAULT FALSE,
+    olusturma_zamani DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sera_id) REFERENCES seralar(id) ON DELETE CASCADE
+);
+
+-- 12. Sera Ayarları Tablosu
+CREATE TABLE sera_ayarlari (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sera_id INT NOT NULL,
+    ayar_tipi VARCHAR(50) NOT NULL,
+    deger VARCHAR(50) NOT NULL,
+    otomatik BOOLEAN DEFAULT TRUE,
+    olusturma_zamani DATETIME DEFAULT CURRENT_TIMESTAMP,
+    guncelleme_zamani DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (sera_id) REFERENCES seralar(id) ON DELETE CASCADE,
+    UNIQUE KEY (sera_id, ayar_tipi)
 );

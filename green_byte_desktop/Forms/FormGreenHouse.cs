@@ -7,25 +7,53 @@ namespace greenByte.Forms
 {
     public partial class FormGreenhouse : Form
     {
-
-    
         public GreenHouseModel Greenhouse { get; private set; }
         private bool isEditing = false;
 
+        // Tekil form örneği
+        private static FormGreenhouse instance;
+
+        // Formun tek bir örneğini sağlamak için
+        public static FormGreenhouse GetInstance(GreenHouseModel greenhouse = null)
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FormGreenhouse(greenhouse);
+            }
+            return instance;
+        }
+
+        // Parametresiz Constructor
         public FormGreenhouse()
         {
             InitializeComponent();
             Greenhouse = new GreenHouseModel();
             this.Text = "Yeni Sera Ekle";
 
+            // Olayı kaldır ve bir daha ekle
+            btnSave.Click -= btnSave_Click;
+            btnSave.Click += btnSave_Click;
+
+            LogDataAccess.Add(new LogModel
+            {
+                UserId = CurrentUser.Id,
+                LogType = LogType.Info,
+                Message = "Yeni sera ekleme formu açıldı.",
+                LogTime = DateTime.Now
+            });
         }
 
+        // Parametreli Constructor
         public FormGreenhouse(GreenHouseModel greenhouse)
         {
             InitializeComponent();
             Greenhouse = greenhouse;
             isEditing = true;
             this.Text = "Sera Düzenle";
+
+            // Olayı kaldır ve bir daha ekle
+            btnSave.Click -= btnSave_Click;
+            btnSave.Click += btnSave_Click;
 
             LogDataAccess.Add(new LogModel
             {
@@ -35,7 +63,6 @@ namespace greenByte.Forms
                 LogTime = DateTime.Now
             });
 
-            // Form yüklendiğinde mevcut değerleri doldur
             LoadGreenhouseData();
         }
 
@@ -43,24 +70,21 @@ namespace greenByte.Forms
         {
             if (Greenhouse != null)
             {
-                txtSeraAdi.Text = Greenhouse.Name;
-                txtKonum.Text = Greenhouse.Location;
-                dateTimePickerKurulusTarihi.Value = Greenhouse.EstablishmentDate;
+                txtGHName.Text = Greenhouse.Name;
+                txtGHLocation.Text = Greenhouse.Location;
 
                 LogDataAccess.Add(new LogModel
                 {
                     UserId = CurrentUser.Id,
                     LogType = LogType.Info,
-                    Message = $"Sera verileri forma yüklendi. Sera: {Greenhouse.Name}",
+                    Message = $"Sera verileri yüklendi. Sera: {Greenhouse.Name}",
                     LogTime = DateTime.Now
                 });
             }
         }
 
-
         private void FormGreenhouse_Load(object sender, EventArgs e)
         {
-            // Form yüklendiğinde gerekli işlemler
             if (!isEditing)
             {
                 dateTimePickerKurulusTarihi.Value = DateTime.Now;
@@ -72,6 +96,10 @@ namespace greenByte.Forms
                     Message = "Yeni sera için varsayılan kuruluş tarihi ayarlandı",
                     LogTime = DateTime.Now
                 });
+            }
+            else
+            {
+                LoadGreenhouseData();
             }
         }
 
@@ -104,10 +132,9 @@ namespace greenByte.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtSeraAdi.Text))
+            if (string.IsNullOrWhiteSpace(txtGHName.Text))
             {
                 MessageBox.Show("Sera adı boş bırakılamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 LogDataAccess.Add(new LogModel
                 {
                     UserId = CurrentUser.Id,
@@ -115,7 +142,6 @@ namespace greenByte.Forms
                     Message = "Sera kaydetme işlemi başarısız: Sera adı boş bırakıldı",
                     LogTime = DateTime.Now
                 });
-
                 return;
             }
 
@@ -124,19 +150,26 @@ namespace greenByte.Forms
                 string action = isEditing ? "güncellendi" : "oluşturuldu";
 
                 Greenhouse.Name = txtGHName.Text;
-                Greenhouse.Location = txtGHName.Text;
-                Greenhouse.EstablishmentDate = dateTimePickerKurulusTarihi.Value;
+                Greenhouse.Location = txtGHLocation.Text;
                 Greenhouse.UserId = CurrentUser.Id;
 
                 var greenhouseDal = new GreenHouseDataAccess();
-                greenhouseDal.Update(Greenhouse);
+
+                if (isEditing)
+                {
+                    greenhouseDal.Update(Greenhouse);
+                }
+                else
+                {
+                    greenhouseDal.Add(Greenhouse);
+                }
 
                 MessageBox.Show("Sera başarıyla kaydedildi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LogDataAccess.Add(new LogModel
                 {
                     UserId = CurrentUser.Id,
                     LogType = LogType.Info,
-                    Message = $"Sera kaydetme işlemi başarılı. Sera: {Greenhouse.Name}",
+                    Message = $"Sera {action} başarılı. Sera Adı: {Greenhouse.Name}",
                     LogTime = DateTime.Now
                 });
 
@@ -146,7 +179,6 @@ namespace greenByte.Forms
             catch (Exception ex)
             {
                 MessageBox.Show($"Hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 LogDataAccess.Add(new LogModel
                 {
                     UserId = CurrentUser.Id,

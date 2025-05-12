@@ -78,7 +78,7 @@ namespace GreenByte
                     {
 
                         CurrentGreenhouse.Selected = seraSecForm.SelectedGreenhouse;
-    
+
                         // Ana formu aç
                         var mainForm = new FormMain();
                         mainForm.Show();
@@ -90,6 +90,21 @@ namespace GreenByte
                             LogTime = DateTime.Now
                         });
                     }
+
+                    greenByte.Properties.Settings.Default.rememberMe = rememberMeCheckBox.Checked;
+
+                    if (rememberMeCheckBox.Checked)
+                    {
+                        greenByte.Properties.Settings.Default.savedUsername = username;
+                        greenByte.Properties.Settings.Default.savedPassword = password;
+                    }
+                    else
+                    {
+                        greenByte.Properties.Settings.Default.savedUsername = string.Empty;
+                        greenByte.Properties.Settings.Default.savedPassword = string.Empty;
+                    }
+
+                    greenByte.Properties.Settings.Default.Save();
                 }
                 else
                 {
@@ -127,6 +142,11 @@ namespace GreenByte
                 Message = "Kullanıcı uygulamadan çıktı.",
                 LogTime = DateTime.Now
             });
+        }
+
+        private void rememberMeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

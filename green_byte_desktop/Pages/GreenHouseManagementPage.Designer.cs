@@ -24,6 +24,8 @@ namespace greenByte.Pages
             this.btnEkle = new System.Windows.Forms.Button();
             this.btnDuzenle = new System.Windows.Forms.Button();
             this.btnSil = new System.Windows.Forms.Button();
+            this.textBoxSearchGreenHouse = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGreenHouses)).BeginInit();
             this.panelButonlar.SuspendLayout();
@@ -31,6 +33,8 @@ namespace greenByte.Pages
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.textBoxSearchGreenHouse);
             this.panel1.Controls.Add(this.dataGridViewGreenHouses);
             this.panel1.Controls.Add(this.labelBaslik);
             this.panel1.Controls.Add(this.panelButonlar);
@@ -45,11 +49,13 @@ namespace greenByte.Pages
             // 
             this.dataGridViewGreenHouses.AllowUserToAddRows = false;
             this.dataGridViewGreenHouses.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dataGridViewGreenHouses.ColumnHeadersHeight = 29;
             this.dataGridViewGreenHouses.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewGreenHouses.Location = new System.Drawing.Point(15, 55);
             this.dataGridViewGreenHouses.MultiSelect = false;
             this.dataGridViewGreenHouses.Name = "dataGridViewGreenHouses";
             this.dataGridViewGreenHouses.ReadOnly = true;
+            this.dataGridViewGreenHouses.RowHeadersWidth = 51;
             this.dataGridViewGreenHouses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewGreenHouses.Size = new System.Drawing.Size(968, 496);
             this.dataGridViewGreenHouses.TabIndex = 4;
@@ -120,16 +126,39 @@ namespace greenByte.Pages
             this.btnSil.UseVisualStyleBackColor = false;
             this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
             // 
-            // GreenHouseManagement
+            // textBoxSearchGreenHouse
+            // 
+            this.textBoxSearchGreenHouse.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textBoxSearchGreenHouse.Location = new System.Drawing.Point(833, 22);
+            this.textBoxSearchGreenHouse.Name = "textBoxSearchGreenHouse";
+            this.textBoxSearchGreenHouse.Size = new System.Drawing.Size(147, 27);
+            this.textBoxSearchGreenHouse.TabIndex = 9;
+            this.textBoxSearchGreenHouse.TextChanged += new System.EventHandler(this.textBoxSearchGreenHouse_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Location = new System.Drawing.Point(721, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(106, 23);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Arama yapın";
+            // 
+            // GreenHouseManagementPage
             // 
             this.Controls.Add(this.panel1);
-            this.Name = "GreenHouseManagement";
+            this.Name = "GreenHouseManagementPage";
             this.Size = new System.Drawing.Size(998, 616);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGreenHouses)).EndInit();
             this.panelButonlar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
+
+        private TextBox textBoxSearchGreenHouse;
+        private Label label1;
     }
 }

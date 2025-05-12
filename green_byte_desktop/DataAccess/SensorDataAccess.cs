@@ -12,7 +12,7 @@ namespace GreenByte.DataAccess
         {
             using (var connection = DBContext.GetConnection())
             {
-                string sql = "SELECT id AS Id, sera_id AS GreenhouseId, ad AS Name, durum AS Status, eklenme_tarihi AS AddedDate FROM sensorler";
+                string sql = "SELECT id AS Id, sera_id AS GreenhouseId, ad AS SensorName, durum AS Status, eklenme_tarihi AS AddedDate FROM sensorler";
                 return connection.Query<Sensor>(sql).ToList();
             }
         }
@@ -21,7 +21,7 @@ namespace GreenByte.DataAccess
         {
             using (var connection = DBContext.GetConnection())
             {
-                string sql = "SELECT id AS Id, sera_id AS GreenhouseId, ad AS Name, durum AS Status, eklenme_tarihi AS AddedDate FROM sensorler WHERE id = @Id";
+                string sql = "SELECT id AS Id, sera_id AS GreenhouseId, ad AS SensorName, durum AS Status, eklenme_tarihi AS AddedDate FROM sensorler WHERE id = @Id";
                 return connection.QueryFirstOrDefault<Sensor>(sql, new { Id = id });
             }
         }
@@ -53,7 +53,7 @@ namespace GreenByte.DataAccess
             }
         }
 
-        public List<SensorData> GetBySensorId(int sensorId) // SensorId'ye göre veri çekme
+        public List<SensorData> GetBySensorId(int sensorId) // sensörleri id ye göre getirme
         {
             using (var connection = DBContext.GetConnection())
             {

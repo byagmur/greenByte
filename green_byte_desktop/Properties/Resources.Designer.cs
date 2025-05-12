@@ -143,6 +143,36 @@ namespace greenByte.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap file {
+            get {
+                object obj = ResourceManager.GetObject("file", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap file__1_ {
+            get {
+                object obj = ResourceManager.GetObject("file (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap file__2_ {
+            get {
+                object obj = ResourceManager.GetObject("file (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fluent__temperature_icon {
             get {
                 object obj = ResourceManager.GetObject("fluent--temperature-icon", resourceCulture);
@@ -226,6 +256,16 @@ namespace greenByte.Properties {
         internal static System.Drawing.Bitmap mynaui__users_group_solid {
             get {
                 object obj = ResourceManager.GetObject("mynaui--users-group-solid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pending {
+            get {
+                object obj = ResourceManager.GetObject("pending", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

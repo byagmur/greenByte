@@ -40,8 +40,7 @@ namespace greenByte.Pages
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    greenhouseDal.Add(form.Greenhouse);
-                    // Log ekle  
+
                     LogDataAccess.Add(new LogModel
                     {
                         UserId = CurrentUser.Id,
@@ -49,7 +48,7 @@ namespace greenByte.Pages
                         Message = $"{form.Greenhouse.Name} adlı sera eklendi.",
                         LogTime = DateTime.Now
                     });
-                    LoadGreenhouses();
+                    LoadGreenhouses(); // Güncel verileri yükle
                 }
             }
             catch (Exception ex)
@@ -64,6 +63,7 @@ namespace greenByte.Pages
                 });
             }
         }
+        
 
         private void btnDuzenle_Click(object sender, EventArgs e)
         {
@@ -76,7 +76,6 @@ namespace greenByte.Pages
                 Id = selectedGreenhouse.Id,
                 Name = selectedGreenhouse.Name,
                 Location = selectedGreenhouse.Location,
-                EstablishmentDate = selectedGreenhouse.EstablishmentDate
             };
 
             var form = new FormGreenhouse(greenhouseCopy);
@@ -150,6 +149,18 @@ namespace greenByte.Pages
         private void buttonRefreshData_Click(object sender, EventArgs e)
         {
             LoadGreenhouses();
+        }
+
+        private void textBoxSearchGreenHouse_TextChanged(object sender, EventArgs e)
+        {
+            string s = textBoxSearchGreenHouse.Text.ToLower();
+
+            var list = greenhouseDal.GetAll()
+                           .Where(g => g.Name.ToLower().Contains(s) ||
+                                       g.Location.ToLower().Contains(s))
+                           .ToList();
+
+            dataGridViewGreenHouses.DataSource = list;
         }
     }
 }
