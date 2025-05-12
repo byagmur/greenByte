@@ -32,7 +32,7 @@
             this.dataGridViewDatas = new System.Windows.Forms.DataGridView();
             this.labelBaslik = new System.Windows.Forms.Label();
             this.panelButonlar = new System.Windows.Forms.Panel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDatas = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxSensorType = new System.Windows.Forms.ComboBox();
@@ -81,7 +81,7 @@
             // 
             // panelButonlar
             // 
-            this.panelButonlar.Controls.Add(this.dateTimePicker1);
+            this.panelButonlar.Controls.Add(this.dateTimePickerDatas);
             this.panelButonlar.Controls.Add(this.label2);
             this.panelButonlar.Controls.Add(this.label1);
             this.panelButonlar.Controls.Add(this.comboBoxSensorType);
@@ -92,14 +92,15 @@
             this.panelButonlar.Size = new System.Drawing.Size(1160, 62);
             this.panelButonlar.TabIndex = 5;
             // 
-            // dateTimePicker1
+            // dateTimePickerDatas
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(395, 18);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(159, 25);
-            this.dateTimePicker1.TabIndex = 7;
+            this.dateTimePickerDatas.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.dateTimePickerDatas.Location = new System.Drawing.Point(395, 18);
+            this.dateTimePickerDatas.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePickerDatas.Name = "dateTimePickerDatas";
+            this.dateTimePickerDatas.Size = new System.Drawing.Size(159, 25);
+            this.dateTimePickerDatas.TabIndex = 7;
+            this.dateTimePickerDatas.ValueChanged += new System.EventHandler(this.dateTimePickerDatas_ValueChanged);
             // 
             // label2
             // 
@@ -156,7 +157,7 @@
         private System.Windows.Forms.DataGridView dataGridViewDatas;
         private System.Windows.Forms.Label labelBaslik;
         private System.Windows.Forms.Panel panelButonlar;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDatas;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxSensorType;

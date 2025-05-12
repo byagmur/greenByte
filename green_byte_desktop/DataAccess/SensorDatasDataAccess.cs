@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using GreenByte.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -85,7 +86,35 @@ ORDER BY sv.kayit_zamani DESC";
             }
         }
 
+        public List<SensorData> GetBySensorIdAndDate(int sensorId, DateTime date)
+        {
+            using (var connection = DBContext.GetConnection())
+            {
+                string sql = @"
+            SELECT sv.id AS Id, sv.sensor_id AS SensorId, s.ad AS SensorName, sv.deger AS Value, sv.kayit_zamani AS RecordTime
+            FROM sensor_verileri sv
+            JOIN sensorler s ON sv.sensor_id = s.id
+            WHERE sv.sensor_id = @SensorId
+              AND CAST(sv.kayit_zamani AS DATE) = @Date
+            ORDER BY sv.kayit_zamani DESC";
+                return connection.Query<SensorData>(sql, new { SensorId = sensorId, Date = date.Date }).ToList();
+            }
+        }
 
+        public List<SensorData> GetDatasByGreenhouseIdAndDate(int greenhouseId, DateTime date)
+        {
+            using (var connection = DBContext.GetConnection())
+            {
+                string sql = @"
+            SELECT sv.id AS Id, sv.sensor_id AS SensorId, s.ad AS SensorName, sv.deger AS Value, sv.kayit_zamani AS RecordTime
+            FROM sensor_verileri sv
+            JOIN sensorler s ON sv.sensor_id = s.id
+            WHERE s.sera_id = @GreenhouseId
+              AND CAST(sv.kayit_zamani AS DATE) = @Date
+            ORDER BY sv.kayit_zamani DESC";
+                return connection.Query<SensorData>(sql, new { GreenhouseId = greenhouseId, Date = date.Date }).ToList();
+            }
+        }
 
     }
 }

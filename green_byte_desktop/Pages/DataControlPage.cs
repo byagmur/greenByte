@@ -25,12 +25,18 @@ namespace greenByte.Pages
                 var sensors = sensorDal.GetByGreenhouseId(seraId);
 
                 // "Tümü" seçeneğini ekle
-                sensors.Insert(0, new Sensor { Id = 0, SensorName = "Tümü" });
+                //sensors.Insert(0, new Sensor { Id = 0, SensorName = "Tümü" });
 
                 comboBoxSensorType.DataSource = sensors;
                 comboBoxSensorType.DisplayMember = "SensorName";
                 comboBoxSensorType.ValueMember = "Id";
-                comboBoxSensorType.SelectedIndex = -1; 
+                //comboBoxSensorType.SelectedIndex = -1;
+
+                //foreach (var item in sensors)
+                //{
+                //    Console.WriteLine($"Sensor ID: {item.Id}, Name: {item.SensorName}");
+                //}
+
 
                 LogDataAccess.Add(new LogModel
                 {
@@ -55,53 +61,58 @@ namespace greenByte.Pages
         private void LoadDatas()
         {
             var seraId = CurrentGreenhouse.Selected?.Id ?? 0;
-            var selectedSensorId = comboBoxSensorType.SelectedValue != null ?
-                                   Convert.ToInt32(comboBoxSensorType.SelectedValue) : 0;
+            var selectedSensorId = comboBoxSensorType.SelectedValue != null
+                ? Convert.ToInt32(comboBoxSensorType.SelectedValue)
+                : 0;
 
+            DateTime selectedDate = dateTimePickerDatas.Value.Date;
             List<SensorData> filteredDatas;
 
-            // "Tümü" seçiliyse veya geçersiz bir seçim varsa
-            if (selectedSensorId <= 0 || comboBoxSensorType.SelectedIndex == -1)
+            // Eğer sensör seçiliyse ve "Tümü" değilse, hem sensör hem tarih filtresi uygula
+            if (selectedSensorId > 0)
             {
-                // Sadece sera ID'ye göre filtrele
-                
-                filteredDatas = sensordal.GetDatasByGreenhouseId(seraId);
+                filteredDatas = sensordal.GetBySensorIdAndDate(selectedSensorId, selectedDate);
             }
             else
             {
-                filteredDatas = sensordal.GetBySensorId(selectedSensorId);
+                // "Tümü" seçiliyse, sera ve tarihe göre filtrele
+                filteredDatas = sensordal.GetDatasByGreenhouseIdAndDate(seraId, selectedDate);
             }
 
             dataGridViewDatas.DataSource = filteredDatas;
 
+            // Sütun ayarları (mevcut kodunuzdaki gibi)
             if (dataGridViewDatas.Columns.Count > 0)
             {
                 if (dataGridViewDatas.Columns.Contains("Id"))
                     dataGridViewDatas.Columns["Id"].Visible = false;
-
                 if (dataGridViewDatas.Columns.Contains("SensorId"))
                     dataGridViewDatas.Columns["SensorId"].Visible = false;
-
                 if (dataGridViewDatas.Columns.Contains("Value"))
                     dataGridViewDatas.Columns["Value"].HeaderText = "Değer";
-
                 if (dataGridViewDatas.Columns.Contains("RecordTime"))
                 {
                     dataGridViewDatas.Columns["RecordTime"].HeaderText = "Kayıt Zamanı";
                     dataGridViewDatas.Columns["RecordTime"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
                     dataGridViewDatas.Columns["RecordTime"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 }
-
                 if (dataGridViewDatas.Columns.Contains("SensorName"))
                     dataGridViewDatas.Columns["SensorName"].HeaderText = "Sensör";
             }
         }
+
+
         private void comboBoxSensorType_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadDatas();
         }
 
         private void DataControlPage_Load(object sender, EventArgs e)
+        {
+            LoadDatas();
+        }
+
+        private void dateTimePickerDatas_ValueChanged(object sender, EventArgs e)
         {
             LoadDatas();
         }
