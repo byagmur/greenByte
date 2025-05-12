@@ -48,7 +48,7 @@
             this.panel1.Controls.Add(this.panelButonlar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(20, 18, 20, 18);
             this.panel1.Size = new System.Drawing.Size(1200, 738);
@@ -60,7 +60,7 @@
             this.dataGridViewDatas.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridViewDatas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewDatas.Location = new System.Drawing.Point(20, 67);
-            this.dataGridViewDatas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewDatas.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewDatas.MultiSelect = false;
             this.dataGridViewDatas.Name = "dataGridViewDatas";
             this.dataGridViewDatas.ReadOnly = true;
@@ -87,7 +87,7 @@
             this.panelButonlar.Controls.Add(this.comboBoxSensorType);
             this.panelButonlar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelButonlar.Location = new System.Drawing.Point(20, 658);
-            this.panelButonlar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelButonlar.Margin = new System.Windows.Forms.Padding(4);
             this.panelButonlar.Name = "panelButonlar";
             this.panelButonlar.Size = new System.Drawing.Size(1160, 62);
             this.panelButonlar.TabIndex = 5;
@@ -96,7 +96,7 @@
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.dateTimePicker1.Location = new System.Drawing.Point(395, 18);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(159, 25);
             this.dateTimePicker1.TabIndex = 7;
@@ -127,7 +127,7 @@
             // 
             this.comboBoxSensorType.FormattingEnabled = true;
             this.comboBoxSensorType.Location = new System.Drawing.Point(118, 19);
-            this.comboBoxSensorType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxSensorType.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxSensorType.Name = "comboBoxSensorType";
             this.comboBoxSensorType.Size = new System.Drawing.Size(160, 24);
             this.comboBoxSensorType.TabIndex = 3;
@@ -138,9 +138,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DataControlPage";
             this.Size = new System.Drawing.Size(1200, 738);
+            this.Load += new System.EventHandler(this.DataControlPage_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDatas)).EndInit();
             this.panelButonlar.ResumeLayout(false);

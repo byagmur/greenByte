@@ -60,27 +60,32 @@ namespace GreenByte.DataAccess
         {
             using (var connection = DBContext.GetConnection())
             {
-                // sera_id sütunu kaldırıldı
-                string sql = "SELECT id AS Id, sensor_id AS SensorId, deger AS Value, kayit_zamani AS RecordTime FROM sensor_verileri WHERE sensor_id = @SensorId ORDER BY kayit_zamani DESC";
+                string sql = @"SELECT sv.id AS Id, sv.sensor_id AS SensorId, 
+                      s.ad AS SensorName, sv.deger AS Value, 
+                      sv.kayit_zamani AS RecordTime 
+                      FROM sensor_verileri sv
+                      JOIN sensorler s ON sv.sensor_id = s.id
+                      WHERE sv.sensor_id = @SensorId 
+                      ORDER BY sv.kayit_zamani DESC";
                 return connection.Query<SensorData>(sql, new { SensorId = sensorId }).ToList();
             }
         }
 
-        public List<SensorData> GetByGreenhouseId(int greenhouseId)
+        public List<SensorData> GetDatasByGreenhouseId(int greenhouseId)
         {
             using (var connection = DBContext.GetConnection())
             {
-                // Artık sensor_verileri tablosunda sera_id sütunu olmadığı için,
-                // Sensörler tablosundan sera_id (veya greenhouse_id) sütunu üzerinden ilişki kuruyoruz
-                string sql = @"SELECT sv.id AS Id, sv.sensor_id AS SensorId, sv.deger AS Value, 
-                              sv.kayit_zamani AS RecordTime 
-                              FROM sensor_verileri sv
-                              INNER JOIN sensorler s ON sv.sensor_id = s.id
-                              WHERE s.sera_id = @GreenhouseId  -- Burada sensorler tablosundaki sera_id/greenhouse_id sütunu kullanılıyor
-                              ORDER BY sv.kayit_zamani DESC";
+                string sql = @"SELECT sv.id, sv.sensor_id, s.ad AS SensorName, sv.deger, sv.kayit_zamani
+FROM sensor_verileri sv
+JOIN sensorler s ON sv.sensor_id = s.id
+WHERE s.sera_id = @GreenhouseId
+ORDER BY sv.kayit_zamani DESC";
 
                 return connection.Query<SensorData>(sql, new { GreenhouseId = greenhouseId }).ToList();
             }
         }
+
+
+
     }
 }
