@@ -1,0 +1,1020 @@
+/* Ana Değişkenler ve Genel Stil Ayarları */
+:root {
+    --primary-green: #2e7d32;
+    --secondary-green: #4caf50;
+    --light-green: #a5d6a7;
+    --very-light-green: #e8f5e9;
+    --dark-green: #1b5e20;
+    --white: #ffffff;
+    --gray: #f5f5f5;
+    --dark-gray: #333333;
+    --light-gray: #eeeeee;
+    --medium-gray: #bbbbbb;
+    --black: #212121;
+    --red: #e53935;
+    --light-red: #ffcdd2;
+    --yellow: #ffd600;
+    --light-yellow: #fff9c4;
+    --blue: #1976d2;
+    --light-blue: #bbdefb;
+    --transparent-black: rgba(0, 0, 0, 0.5);
+    --transparent-white: rgba(255, 255, 255, 0.9);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--gray);
+    color: var(--dark-gray);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Dashboard Container Stili */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Stili */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, var(--dark-green), var(--primary-green));
+    color: var(--white);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+}
+
+.sidebar-header {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.logo-icon {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.slogan {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.sidebar-menu {
+    list-style: none;
+    flex: 1;
+}
+
+.sidebar-menu li {
+    margin-bottom: 5px;
+}
+
+.sidebar-menu li a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+    border-left: 4px solid transparent;
+}
+
+.sidebar-menu li a i {
+    margin-right: 10px;
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-menu li.active a {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-left-color: var(--light-green);
+}
+
+.sidebar-menu li.logout {
+    margin-top: auto;
+}
+
+.sidebar-menu li.logout a {
+    color: var(--light-red);
+}
+
+/* Main Content Stili */
+.main-content {
+    flex: 1;
+    background-color: var(--gray);
+    padding: 20px;
+    overflow-y: auto;
+    transition: var(--transition);
+}
+
+/* Top Navigation Stili */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 10px 20px;
+    box-shadow: var(--shadow);
+}
+
+#toggle-sidebar {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--dark-gray);
+    cursor: pointer;
+    display: none;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.notifications {
+    position: relative;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.notifications i {
+    font-size: 1.2rem;
+    color: var(--dark-gray);
+}
+
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--red);
+    color: var(--white);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
+
+.user img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Dashboard Header Stili */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-header h2 {
+    color: var(--dark-green);
+    font-weight: 600;
+}
+
+.dashboard-actions {
+    display: flex;
+    align-items: center;
+}
+
+.weather-info {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    background-color: var(--white);
+    padding: 8px 15px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.weather-info i {
+    color: var(--yellow);
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.weather-info span {
+    margin-right: 8px;
+}
+
+.date-time {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.date-time span {
+    color: var(--dark-gray);
+}
+
+/* System Status Bar Stili */
+.status-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: var(--white);
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.status-item i {
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+.status-item:first-child i {
+    color: var(--secondary-green);
+}
+
+.status-item:nth-child(2) i {
+    color: var(--blue);
+}
+
+.status-item:nth-child(3) i {
+    color: var(--secondary-green);
+}
+
+/* Notification Panel Stili */
+.notification-panel {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 350px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    z-index: 100;
+    overflow: hidden;
+    display: none;
+    transition: var(--transition);
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.notification-header h3 {
+    color: var(--dark-green);
+    font-size: 1.1rem;
+}
+
+.notification-header button {
+    background: none;
+    border: none;
+    color: var(--dark-gray);
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.notification-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.notification {
+    display: flex;
+    padding: 15px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.notification i {
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+.notification.warning i {
+    color: var(--yellow);
+}
+
+.notification.info i {
+    color: var(--blue);
+}
+
+.notification.success i {
+    color: var(--secondary-green);
+}
+
+.notification.danger i {
+    color: var(--red);
+}
+
+.notification-content p {
+    margin-bottom: 5px;
+}
+
+.notification-time {
+    font-size: 0.8rem;
+    color: var(--medium-gray);
+}
+
+/* Quick Stats Stili */
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    background-color: var(--very-light-green);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.stat-icon i {
+    color: var(--primary-green);
+    font-size: 1.5rem;
+}
+
+.stat-info h3 {
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--dark-green);
+}
+
+.stat-status {
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.normal {
+    background-color: var(--light-green);
+    color: var(--dark-green);
+}
+
+.warning {
+    background-color: var(--light-yellow);
+    color: #856404;
+}
+
+.danger {
+    background-color: var(--light-red);
+    color: #721c24;
+}
+
+/* Dashboard Panels Stili */
+.dashboard-panels {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-panel {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.dashboard-panel.large {
+    grid-column: span 2;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.panel-header h3 {
+    color: var(--dark-green);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.panel-header h3 i {
+    margin-right: 10px;
+}
+
+.panel-actions {
+    display: flex;
+    align-items: center;
+}
+
+.refresh-btn {
+    background: none;
+    border: none;
+    color: var(--dark-gray);
+    cursor: pointer;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.panel-actions select {
+    border: 1px solid var(--light-gray);
+    padding: 5px 8px;
+    border-radius: 5px;
+    background-color: var(--white);
+    color: var(--dark-gray);
+}
+
+.panel-content {
+    padding: 20px;
+}
+
+/* Temperature & Humidity Panel Stili */
+.panel-chart {
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.panel-data {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.current-reading {
+    flex: 1;
+    border-right: 1px solid var(--light-gray);
+    padding-right: 15px;
+}
+
+.current-reading h4 {
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+    margin-bottom: 5px;
+}
+
+.reading-value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--dark-green);
+}
+
+.reading-details {
+    flex: 1;
+    padding-left: 15px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.detail-item span {
+    color: var(--dark-gray);
+}
+
+.panel-controls {
+    border-top: 1px solid var(--light-gray);
+    padding-top: 15px;
+}
+
+.panel-controls h4 {
+    font-size: 1rem;
+    color: var(--dark-green);
+    margin-bottom: 10px;
+}
+
+.control-group {
+    margin-bottom: 15px;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+}
+
+.range-control {
+    display: flex;
+    align-items: center;
+}
+
+.range-control button {
+    width: 36px;
+    height: 36px;
+    background-color: var(--light-gray);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.range-control input {
+    width: 80px;
+    margin: 0 10px;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid var(--light-gray);
+    border-radius: 5px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background-color: var(--light-gray);
+    border-radius: 20px;
+    transition: var(--transition);
+    margin-right: 10px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: var(--white);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: var(--secondary-green);
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(20px);
+}
+
+.toggle-label {
+    font-size: 0.9rem;
+}
+
+.apply-btn {
+    background-color: var(--primary-green);
+    color: var(--white);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.apply-btn:hover {
+    background-color: var(--dark-green);
+}
+
+/* Soil Moisture Panel Stili */
+.moisture-gauge {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.gauge-container {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.gauge {
+    width: 40px;
+    height: 200px;
+    background-color: var(--light-gray);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.gauge-value {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(to top, var(--primary-green), var(--light-green));
+    border-radius: 20px;
+    transition: height 0.5s ease;
+}
+
+.gauge-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+    margin-left: 10px;
+    font-size: 0.8rem;
+}
+
+.gauge-reading {
+    flex: 1;
+}
+
+.gauge-reading h4 {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.gauge-reading p {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--dark-green);
+}
+
+.gauge-status {
+    font-size: 0.9rem;
+}
+
+.control-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.control-actions.centered {
+    justify-content: center;
+}
+
+.action-btn {
+    background-color: var(--primary-green);
+    color: var(--white);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+}
+
+.action-btn i {
+    margin-right: 8px;
+}
+
+.action-btn:hover {
+    background-color: var(--dark-green);
+}
+
+.water-btn {
+    background-color: var(--blue);
+}
+
+.water-btn:hover {
+    background-color: #0d47a1;
+}
+
+.light-btn {
+    background-color: var(--yellow);
+    color: var(--black);
+}
+
+.light-btn:hover {
+    background-color: #fbc02d;
+}
+
+.vent-btn {
+    background-color: var(--blue);
+}
+
+.vent-btn:hover {
+    background-color: #0d47a1;
+}
+
+.refill-btn {
+    background-color: var(--blue);
+}
+
+.refill-btn:hover {
+    background-color: #0d47a1;
+}
+
+/* Light Panel Stili */
+.light-chart-container {
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.light-status {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.light-reading {
+    flex: 1;
+    padding-right: 15px;
+    border-right: 1px solid var(--light-gray);
+}
+
+.light-reading h4 {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.light-reading p {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--dark-green);
+}
+
+.light-info {
+    flex: 1;
+    padding-left: 15px;
+}
+
+.light-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+/* Water Tank Panel Stili */
+.water-tank-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.water-tank {
+    width: 80px;
+    height: 200px;
+    background-color: var(--light-gray);
+    border-radius: 10px;
+    position: relative;
+    margin-right: 20px;
+    overflow: hidden;
+    border: 2px solid var(--dark-gray);
+}
+
+.water-level {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(to top, #1976d2, #64b5f6);
+    transition: height 0.5s ease;
+}
+
+.water-labels {
+    position: absolute;
+    top: 0;
+    right: -30px;
+    height: 100%;
+    width: 40px;
+    font-size: 0.8rem;
+}
+
+.water-mark {
+    position: absolute;
+    right: 0;
+    transform: translateY(50%);
+}
+
+.water-mark.warning {
+    color: var(--red);
+    font-weight: bold;
+}
+
+.water-reading {
+    flex: 1;
+}
+
+.water-reading h4 {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.water-reading p {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--dark-green);
+}
+
+.water-reading p.warning {
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: var(--red);
+}
+
+/* CO2 Panel Stili */
+.co2-chart-container {
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.co2-status {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.co2-reading {
+    flex: 1;
+    padding-right: 15px;
+    border-right: 1px solid var(--light-gray);
+}
+
+.co2-reading h4 {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.co2-reading p {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--dark-green);
+}
+
+.co2-info {
+    flex: 1;
+    padding-left: 15px;
+}
+
+.co2-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+/* Responsive Dizayn */
+@media (max-width: 1200px) {
+    .dashboard-panel.large {
+        grid-column: auto;
+    }
+}
+
+.mevcut-deger {
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: var(--dark-green);
+}
+
+@media (max-width: 992px) {
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        z-index: 100;
+        transform: translateX(-100%);
+    }
+    
+    .sidebar.show {
+        transform: translateX(0);
+    }
+    
+    #toggle-sidebar {
+        display: block;
+    }
+    
+    .panel-data {
+        flex-direction: column;
+    }
+    
+    .current-reading {
+        border-right: none;
+        border-bottom: 1px solid var(--light-gray);
+        padding-right: 0;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .reading-details {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .quick-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .dashboard-actions {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    
+    .weather-info {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .moisture-gauge, .water-tank-container, .light-status, .co2-status {
+        flex-direction: column;
+    }
+    
+    .gauge-container, .water-tank {
+        margin-right: 0;
+        margin-bottom: 20px;
+        align-self: center;
+    }
+    
+    .light-reading, .co2-reading {
+        border-right: none;
+        border-bottom: 1px solid var(--light-gray);
+        padding-right: 0;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .light-info, .co2-info {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .quick-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboard-panels {
+        grid-template-columns: 1fr;
+    }
+    
+    .control-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .toggle-switch {
+        margin-top: 10px;
+    }
+}

@@ -140,5 +140,8 @@ CREATE TABLE sera_ayarlari (
     olusturma_zamani DATETIME DEFAULT CURRENT_TIMESTAMP,
     guncelleme_zamani DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (sera_id) REFERENCES seralar(id) ON DELETE CASCADE,
-    UNIQUE KEY (sera_id, ayar_tipi)
+    UNIQUE KEY (sera_id, ayar_tipi)
 );
+
+-- Sensor_verileri tablosuna ek_veri sütunu ekle
+ALTER TABLE sensor_verileri ADD COLUMN ek_veri VARCHAR(50) DEFAULT NULL AFTER deger;
