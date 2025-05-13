@@ -3,7 +3,6 @@ using GreenByte.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace GreenByte.DataAccess
 {
@@ -58,15 +57,10 @@ namespace GreenByte.DataAccess
         {
             using (var connection = DBContext.GetConnection())
             {
-                if (connection == null)
-                {
-                    MessageBox.Show("Veritabanı bağlantısı kurulamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
                 string sql = "SELECT id AS Id, sensor_id AS SensorId, deger AS Value, kayit_zamani AS RecordTime FROM sensor_verileri WHERE sensor_id = @SensorId ORDER BY kayit_zamani";
                 return connection.Query<SensorData>(sql, new { SensorId = sensorId }).ToList();
             }
         }
-
 
         public List<Sensor> GetByGreenhouseId(int greenhouseId)
         {

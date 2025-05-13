@@ -4,13 +4,6 @@ using GreenByte;
 using GreenByte.DataAccess;
 using GreenByte.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace greenByte.Forms
@@ -27,7 +20,6 @@ namespace greenByte.Forms
             labelUsername.Text = CurrentUser.User.Username;
 
             clearAndAddControl(new AdminDashboardPage());
-
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
@@ -88,9 +80,6 @@ namespace greenByte.Forms
                             LogTime = DateTime.Now
                         });
                         break;
-                    //case "buttonTempControlPage":
-                    //    clearAndAddControl(new TemperatureControlPage());
-                    //    break;
                     case "buttonDataControlPage":
                        clearAndAddControl(new DataControlPage());
                        LogDataAccess.Add(new LogModel
@@ -100,22 +89,21 @@ namespace greenByte.Forms
                            Message = "Kullanıcı veri yönetim sayfasına yönlendirildi.",
                            LogTime = DateTime.Now
                        });
-                       break;            
+                       break;
                     default:
                         clearAndAddControl(new AdminDashboardPage());
                         break;
                 }
 
+                //MessageBox.Show($"TablePanel kontrol sayısı: {tablePanel1.Controls.Count}");
 
             }
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            // Kullanıcı bilgisini temizle
             CurrentUser.User = null;
 
-            // "Beni Hatırla" ayarlarını da temizlemek istersen:
             Properties.Settings.Default.rememberMe = false;
             Properties.Settings.Default.savedUsername = "";
             Properties.Settings.Default.savedPassword = "";
@@ -128,11 +116,9 @@ namespace greenByte.Forms
                 Message = "Kullanıcı çıkış yapıldı.",
                 LogTime = DateTime.Now
             });
-            // Login ekranını aç
             FormLogin loginForm = new FormLogin();
             loginForm.Show();
 
-            // Ana formu kapat
             this.Close();
         }
 

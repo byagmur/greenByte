@@ -26,29 +26,41 @@ namespace greenByte.Forms
 
         private void fillGreenHouseCombo()
         {
-            var user = CurrentUser.User;
-            if (user == null)
-                return;
-
-            // Kullanıcıya ait seraları çek
-            var greenhouseDal = new GreenHouseDataAccess();
-            LogDataAccess.Add(new LogModel
+            try
             {
-                UserId = CurrentUser.Id,
-                LogType = LogType.Info,
-                Message = "Kullanıcıya ait seralar çekildi.",
-                LogTime = DateTime.Now
-            });
-            var greenhouses = greenhouseDal.GetAll()
-                                           .Where(g => g.UserId == user.Id)
-                                           .ToList();
+                var user = CurrentUser.User;
+                if (user == null)
+                    return;
 
-            comboBoxGreenHouse.DataSource = greenhouses;
-            comboBoxGreenHouse.DisplayMember = "Name";
-            comboBoxGreenHouse.ValueMember = "Id";
-            if (greenhouses.Count > 0)
-                comboBoxGreenHouse.SelectedIndex = 0;
-                
+                var greenhouseDal = new GreenHouseDataAccess();
+                LogDataAccess.Add(new LogModel
+                {
+                    UserId = CurrentUser.Id,
+                    LogType = LogType.Info,
+                    Message = "Kullanıcıya ait seralar çekildi.",
+                    LogTime = DateTime.Now
+                });
+                var greenhouses = greenhouseDal.GetAll()
+                                               .Where(g => g.UserId == user.Id)
+                                               .ToList();
+
+                comboBoxGreenHouse.DataSource = greenhouses;
+                comboBoxGreenHouse.DisplayMember = "Name";
+                comboBoxGreenHouse.ValueMember = "Id";
+                if (greenhouses.Count > 0)
+                    comboBoxGreenHouse.SelectedIndex = 0;
+            } catch(Exception ex)
+            {
+                MessageBox.Show("Seralar yüklenirken bir hata oluştu: " + ex.Message);
+                LogDataAccess.Add(new LogModel
+                {
+                    UserId = CurrentUser.Id,
+                    LogType = LogType.Error,
+                    Message = "Seralar yüklenirken hata: " + ex.Message,
+                    LogTime = DateTime.Now
+                });
+            }
+
         }
 
         private void buttonDevam_Click(object sender, EventArgs e)
@@ -60,7 +72,6 @@ namespace greenByte.Forms
                 return;
             }
 
-            // Seçili serayı global olarak ata
             CurrentGreenhouse.Selected = SelectedGreenhouse;
             LogDataAccess.Add(new LogModel
             {
@@ -69,8 +80,7 @@ namespace greenByte.Forms
                 Message = "Kullanıcı seçili serayı global olarak atandı.",
                 LogTime = DateTime.Now
             });
-
-            // Ana forma yönlendir
+ 
             var mainForm = new FormMain();
             mainForm.Show();
             LogDataAccess.Add(new LogModel
@@ -91,7 +101,7 @@ namespace greenByte.Forms
             {
                 UserId = CurrentUser.Id,
                 LogType = LogType.Info,
-                Message = "Kullanıcı login sayfasına yönlendirildi.",
+                Message = "Kullanıcı giriş sayfasına geri yönlendirildi.",
                 LogTime = DateTime.Now
             });
             loginForm.Show();

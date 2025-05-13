@@ -65,18 +65,18 @@ namespace greenByte.Pages
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(721, 27);
+            this.label1.Location = new System.Drawing.Point(682, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 19);
+            this.label1.Size = new System.Drawing.Size(106, 23);
             this.label1.TabIndex = 9;
             this.label1.Text = "Arama yapın";
             // 
             // textBoxSearchUser
             // 
             this.textBoxSearchUser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBoxSearchUser.Location = new System.Drawing.Point(813, 24);
+            this.textBoxSearchUser.Location = new System.Drawing.Point(770, 23);
             this.textBoxSearchUser.Name = "textBoxSearchUser";
-            this.textBoxSearchUser.Size = new System.Drawing.Size(147, 23);
+            this.textBoxSearchUser.Size = new System.Drawing.Size(147, 27);
             this.textBoxSearchUser.TabIndex = 8;
             this.textBoxSearchUser.TextChanged += new System.EventHandler(this.textBoxSearchUser_TextChanged);
             // 
@@ -96,11 +96,13 @@ namespace greenByte.Pages
             // 
             this.dataGridViewUsers.AllowUserToAddRows = false;
             this.dataGridViewUsers.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dataGridViewUsers.ColumnHeadersHeight = 29;
             this.dataGridViewUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewUsers.Location = new System.Drawing.Point(15, 55);
             this.dataGridViewUsers.MultiSelect = false;
             this.dataGridViewUsers.Name = "dataGridViewUsers";
             this.dataGridViewUsers.ReadOnly = true;
+            this.dataGridViewUsers.RowHeadersWidth = 51;
             this.dataGridViewUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewUsers.Size = new System.Drawing.Size(968, 496);
             this.dataGridViewUsers.TabIndex = 4;

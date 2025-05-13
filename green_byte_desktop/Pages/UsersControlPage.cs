@@ -23,24 +23,37 @@ namespace greenByte.Pages
 
         private void LoadUsers()
         {
-            var seraId = CurrentGreenhouse.Selected?.Id ?? 0;
+            try
+            {
+                var seraId = CurrentGreenhouse.Selected?.Id ?? 0;
 
-            var users = userDal.GetAll();
+                var users = userDal.GetAll();
 
-            // Filtreleme ve DataGridView doldurma
-            var filteredUsers = users.Where(u => u.GreenhouseId == seraId).ToList();
+                // Filtreleme ve DataGridView doldurma
+                var filteredUsers = users.Where(u => u.GreenhouseId == seraId).ToList();
 
-            dataGridViewUsers.DataSource = filteredUsers;
+                dataGridViewUsers.DataSource = filteredUsers;
 
-            // Kolon başlıklarını düzenle
-            dataGridViewUsers.Columns["Id"].HeaderText = "ID";
-            dataGridViewUsers.Columns["Id"].Visible = false;
-            dataGridViewUsers.Columns["Username"].HeaderText = "Kullanıcı Adı";
-            dataGridViewUsers.Columns["Email"].HeaderText = "E-posta";
-            dataGridViewUsers.Columns["RegistrationDate"].HeaderText = "Kayıt Tarihi";
-            dataGridViewUsers.Columns["GreenhouseId"].HeaderText = "Sera ID";
-            dataGridViewUsers.Columns["GreenhouseId"].Visible = false;
-            dataGridViewUsers.Columns["Password"].Visible = false; // Şifreyi gizle
+                // Kolon başlıklarını düzenle
+                dataGridViewUsers.Columns["Id"].HeaderText = "ID";
+                dataGridViewUsers.Columns["Id"].Visible = false;
+                dataGridViewUsers.Columns["Username"].HeaderText = "Kullanıcı Adı";
+                dataGridViewUsers.Columns["Email"].HeaderText = "E-posta";
+                dataGridViewUsers.Columns["RegistrationDate"].HeaderText = "Kayıt Tarihi";
+                dataGridViewUsers.Columns["GreenhouseId"].HeaderText = "Sera ID";
+                dataGridViewUsers.Columns["GreenhouseId"].Visible = false;
+                dataGridViewUsers.Columns["Password"].Visible = false; // Şifreyi gizle
+            }catch
+            {
+                MessageBox.Show("Kullanıcı listesi yüklenirken bir hata oluştu.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LogDataAccess.Add(new LogModel
+                {
+                    UserId = CurrentUser.Id,
+                    LogType = LogType.Error,
+                    Message = "Kullanıcı listesi yüklenirken hata oluştu.",
+                    LogTime = DateTime.Now
+                });
+            }
         }
 
        
@@ -50,7 +63,7 @@ namespace greenByte.Pages
             var form = new FormUser();
             try{
              if (form.ShowDialog() == DialogResult.OK)
-            {
+             {
                 userDal.Add(form.User);
                 // Log ekle
                 LogDataAccess.Add(new LogModel
@@ -61,7 +74,7 @@ namespace greenByte.Pages
                     LogTime = DateTime.Now
                 });
                 LoadUsers();
-            } 
+             } 
             }
             catch(Exception ex)
             {

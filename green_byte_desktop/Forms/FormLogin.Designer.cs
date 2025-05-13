@@ -276,9 +276,7 @@ namespace GreenByte
             this.rememberMeCheckBox.Name = "rememberMeCheckBox";
             this.rememberMeCheckBox.Size = new System.Drawing.Size(98, 23);
             this.rememberMeCheckBox.TabIndex = 9;
-            this.rememberMeCheckBox.Text = "Beni Hatırla";
-            this.rememberMeCheckBox.CheckedChanged += new System.EventHandler(this.rememberMeCheckBox_CheckedChanged);
-            // 
+            this.rememberMeCheckBox.Text = "Beni Hatırla";            // 
             // loginButton
             // 
             this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));

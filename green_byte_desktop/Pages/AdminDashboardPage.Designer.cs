@@ -29,8 +29,9 @@ namespace greenByte.Controls
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.eventsLabel = new System.Windows.Forms.Label();
+            this.notificationsListView = new System.Windows.Forms.ListView();
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.chartSicaklikVeNem = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -66,43 +67,60 @@ namespace greenByte.Controls
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(998, 78);
-            this.panel1.TabIndex = 0;
-            // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.eventsLabel);
+            this.panel2.Controls.Add(this.notificationsListView);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.chartSicaklikVeNem);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 215);
+            this.panel2.Location = new System.Drawing.Point(0, 130);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(998, 401);
+            this.panel2.Size = new System.Drawing.Size(998, 486);
             this.panel2.TabIndex = 2;
+            // 
+            // eventsLabel
+            // 
+            this.eventsLabel.AutoSize = true;
+            this.eventsLabel.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.eventsLabel.Location = new System.Drawing.Point(448, 41);
+            this.eventsLabel.Name = "eventsLabel";
+            this.eventsLabel.Size = new System.Drawing.Size(107, 20);
+            this.eventsLabel.TabIndex = 11;
+            this.eventsLabel.Text = "Son Bildirimler";
+            // 
+            // notificationsListView
+            // 
+            this.notificationsListView.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.notificationsListView.GridLines = true;
+            this.notificationsListView.HideSelection = false;
+            this.notificationsListView.Location = new System.Drawing.Point(445, 75);
+            this.notificationsListView.Name = "notificationsListView";
+            this.notificationsListView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.notificationsListView.Size = new System.Drawing.Size(523, 302);
+            this.notificationsListView.TabIndex = 10;
+            this.notificationsListView.UseCompatibleStateImageBehavior = false;
+            this.notificationsListView.View = System.Windows.Forms.View.SmallIcon;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.Color.LightGray;
-            this.label11.Location = new System.Drawing.Point(57, 351);
+            this.label11.ForeColor = System.Drawing.Color.Silver;
+            this.label11.Location = new System.Drawing.Point(33, 446);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(535, 13);
+            this.label11.Size = new System.Drawing.Size(649, 13);
             this.label11.TabIndex = 9;
             this.label11.Text = "_________________________________________________________________________________" +
-    "_______";
+    "__________________________";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(49, 29);
+            this.label9.Location = new System.Drawing.Point(36, 41);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(230, 20);
             this.label9.TabIndex = 8;
@@ -115,13 +133,13 @@ namespace greenByte.Controls
             this.chartSicaklikVeNem.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartSicaklikVeNem.Legends.Add(legend1);
-            this.chartSicaklikVeNem.Location = new System.Drawing.Point(40, 64);
+            this.chartSicaklikVeNem.Location = new System.Drawing.Point(23, 64);
             this.chartSicaklikVeNem.Name = "chartSicaklikVeNem";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartSicaklikVeNem.Series.Add(series1);
-            this.chartSicaklikVeNem.Size = new System.Drawing.Size(587, 300);
+            this.chartSicaklikVeNem.Size = new System.Drawing.Size(392, 313);
             this.chartSicaklikVeNem.TabIndex = 5;
             this.chartSicaklikVeNem.Text = "chart1";
             // 
@@ -130,7 +148,7 @@ namespace greenByte.Controls
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label2.Location = new System.Drawing.Point(705, 374);
+            this.label2.Location = new System.Drawing.Point(696, 450);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(279, 15);
             this.label2.TabIndex = 3;
@@ -149,13 +167,13 @@ namespace greenByte.Controls
             this.tableLayoutPanel1.Controls.Add(this.panel5, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 78);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(998, 137);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(998, 143);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // panel11
@@ -372,7 +390,6 @@ namespace greenByte.Controls
             // 
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Name = "AdminDashboardPage";
             this.Size = new System.Drawing.Size(998, 616);
             this.panel2.ResumeLayout(false);
@@ -395,8 +412,6 @@ namespace greenByte.Controls
 
     
 
-
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -423,5 +438,7 @@ namespace greenByte.Controls
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Label label11;
+        private ListView notificationsListView;
+        private Label eventsLabel;
     }
 }

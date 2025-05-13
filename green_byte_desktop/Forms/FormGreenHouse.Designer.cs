@@ -76,7 +76,6 @@
             this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.buttonClose.ForeColor = System.Drawing.Color.White;
-            this.buttonClose.Image = global::greenByte.Properties.Resources._24px_close_icon;
             this.buttonClose.Location = new System.Drawing.Point(463, 0);
             this.buttonClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonClose.Name = "buttonClose";

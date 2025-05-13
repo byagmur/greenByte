@@ -123,6 +123,7 @@
     <Compile Include="DataAccess\DeviceEventDataAccess.cs" />
     <Compile Include="DataAccess\GreenHouseDataAccess.cs" />
     <Compile Include="DataAccess\LogDataAccess.cs" />
+    <Compile Include="DataAccess\NotificationDataAccess.cs" />
     <Compile Include="DataAccess\PlantDataAccess.cs" />
     <Compile Include="DataAccess\PlantTypeDataAccess.cs" />
     <Compile Include="DataAccess\SensorDataAccess.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="Models\DeviceModel.cs" />
     <Compile Include="Models\GreenHouseModel.cs" />
     <Compile Include="Models\LogModel.cs" />
+    <Compile Include="Models\NotificationModel.cs" />
     <Compile Include="Models\PlantModel.cs" />
     <Compile Include="Models\PlantTypeModel.cs" />
     <Compile Include="Models\SensorDataModel.cs" />
@@ -226,6 +228,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="Forms\FormGreenHouse.resx">
@@ -271,11 +278,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -287,30 +289,20 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Resources\background.jpg" />
     <None Include="Resources\clarity--logout-line.png" />
-    <None Include="Resources\ic--round-refresh %2824px%29.png" />
-    <None Include="Resources\file %281%29.png" />
-    <None Include="Resources\file %282%29.png" />
-    <Content Include="Resources\file.png" />
-    <None Include="Resources\file1.png" />
-    <Content Include="Resources\icon.png" />
+    <None Include="Resources\user.png" />
+    <None Include="Resources\24px_close_icon.png" />
+    <Content Include="Resources\background.jpg" />
+    <None Include="Resources\pending_icon.png" />
     <None Include="Resources\game-icons--greenhouse.png" />
+    <None Include="Resources\data-manager_icon.png" />
+    <None Include="Resources\mynaui--users-group-solid.png" />
+    <None Include="Resources\dashboard_icon.png" />
+    <None Include="Resources\ic--round-refresh %2824px%29.png" />
+    <None Include="Resources\file %282%29.png" />
     <None Include="Resources\icon2.png" />
     <None Include="Resources\lets-icons--back.png" />
     <None Include="Resources\pending.png" />
-    <Content Include="Resources\user.png" />
-    <None Include="Resources\user1.png" />
-    <None Include="Resources\bi--moisture.png" />
-    <None Include="Resources\24px_close_icon.png" />
-    <None Include="Resources\carbon--soil-moisture-field.png" />
-    <None Include="Resources\mingcute--light-fill.png" />
-    <None Include="Resources\fluent--temperature-icon.png" />
-    <None Include="Resources\data-manager_icon.png" />
-    <None Include="Resources\mynaui--users-group-solid.png" />
-    <None Include="Resources\dashboard_icon1.png" />
-    <None Include="Resources\dashboard_icon.png" />
-    <None Include="Resources\close_icon48.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

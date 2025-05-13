@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using GreenByte.Models;
@@ -39,46 +33,51 @@ namespace greenByte.Forms
 
         private void btnSave_Click_1(object sender, EventArgs e)
         {
-            // Kullanıcı adı kontrolü (sadece eklemede)
-            if (!IsEditMode)
+            try
             {
-                var userDal = new UserDataAccess();
-                var exists = userDal.GetAll().Any(u => u.Username == txtUsername.Text);
-                if (exists)
+                if (!IsEditMode)
                 {
-                    MessageBox.Show("Bu kullanıcı adı zaten kayıtlı!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    var userDal = new UserDataAccess();
+                    var exists = userDal.GetAll().Any(u => u.Username == txtUsername.Text);
+                    if (exists)
+                    {
+                        MessageBox.Show("Bu kullanıcı adı zaten kayıtlı!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+
+                if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                {
+                    MessageBox.Show("Lütfen geçerli bir e-posta adresi girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     LogDataAccess.Add(new LogModel
                     {
                         UserId = CurrentUser.Id,
                         LogType = LogType.Error,
-                        Message = "Kullanıcı adı zaten kayıtlı!",
+                        Message = "Geçersiz e-posta adresi!",
                         LogTime = DateTime.Now
                     });
-                    return;
                 }
-            }
 
-            // E-posta regex kontrolü
-            if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                User.Username = txtUsername.Text;
+                User.Email = txtEmail.Text;
+                User.Password = txtPassword.Text;
+                User.RegistrationDate = DateTime.Now;
+                User.GreenhouseId = CurrentGreenhouse.Selected?.Id ?? 0;
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Lütfen geçerli bir e-posta adresi girin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Kullanıcı kaydedilirken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 LogDataAccess.Add(new LogModel
                 {
                     UserId = CurrentUser.Id,
                     LogType = LogType.Error,
-                    Message = "Geçersiz e-posta adresi!",
+                    Message = "Kullanıcı kaydedilirken hata: " + ex.Message,
                     LogTime = DateTime.Now
                 });
             }
-
-            User.Username = txtUsername.Text;
-            User.Email = txtEmail.Text;
-            User.Password = txtPassword.Text;
-            User.RegistrationDate = DateTime.Now;
-            User.GreenhouseId = CurrentGreenhouse.Selected?.Id ?? 0;
-
-            this.DialogResult = DialogResult.OK;
-            this.Close();
         }
 
         private void buttonClose_Click(object sender, EventArgs e)

@@ -1,13 +1,9 @@
 ﻿using greenByte.Forms;
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.IO;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 using GreenByte.DataAccess;
 using System.Linq;
-using System.Windows.Forms.PropertyGridInternal;
 using GreenByte.Models;
 
 
@@ -46,14 +42,7 @@ namespace GreenByte
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Kullanıcı adı ve şifre boş bırakılamaz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                LogDataAccess.Add(new LogModel
-                {
-                    UserId = CurrentUser.Id,
-                    LogType = LogType.Error,
-                    Message = "Kullanıcı adı ve şifre boş bırakılamaz!",
-                    LogTime = DateTime.Now
-                });
+                MessageBox.Show("Kullanıcı adı ve şifre boş bırakılamaz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);  
                 return;
             }
 
@@ -68,18 +57,14 @@ namespace GreenByte
 
                     CurrentUser.Id = user.Id;
 
-
-                    // Login formunu gizle
                     this.Hide();
 
-                    // Sera seçme formunu göster
                     var seraSecForm = new FormSelectGreenHouse();
                     if (seraSecForm.ShowDialog() == DialogResult.OK)
                     {
 
                         CurrentGreenhouse.Selected = seraSecForm.SelectedGreenhouse;
 
-                        // Ana formu aç
                         var mainForm = new FormMain();
                         mainForm.Show();
                         LogDataAccess.Add(new LogModel
@@ -113,7 +98,7 @@ namespace GreenByte
                     {
                         UserId = CurrentUser.Id,
                         LogType = LogType.Error,
-                        Message = "Kullanıcı adı veya şifre hatalı!",
+                        Message = "Hatalı şifre veya kullanıcı adı denemesi yapıldı!",
                         LogTime = DateTime.Now
                     });
                 }
@@ -133,7 +118,7 @@ namespace GreenByte
 
         private void closeButton_Click(object sender, EventArgs e)
         {
-          // Kullanıcı bilgisini temizle
+
             CurrentUser.User = null;
             Application.Exit();
             LogDataAccess.Add(new LogModel
@@ -144,9 +129,5 @@ namespace GreenByte
             });
         }
 
-        private void rememberMeCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

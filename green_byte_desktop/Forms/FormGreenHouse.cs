@@ -10,10 +10,8 @@ namespace greenByte.Forms
         public GreenHouseModel Greenhouse { get; private set; }
         private bool isEditing = false;
 
-        // Tekil form örneği
         private static FormGreenhouse instance;
 
-        // Formun tek bir örneğini sağlamak için
         public static FormGreenhouse GetInstance(GreenHouseModel greenhouse = null)
         {
             if (instance == null || instance.IsDisposed)
@@ -23,14 +21,12 @@ namespace greenByte.Forms
             return instance;
         }
 
-        // Parametresiz Constructor
         public FormGreenhouse()
         {
             InitializeComponent();
             Greenhouse = new GreenHouseModel();
             this.Text = "Yeni Sera Ekle";
 
-            // Olayı kaldır ve bir daha ekle
             btnSave.Click -= btnSave_Click;
             btnSave.Click += btnSave_Click;
 
@@ -43,7 +39,6 @@ namespace greenByte.Forms
             });
         }
 
-        // Parametreli Constructor
         public FormGreenhouse(GreenHouseModel greenhouse)
         {
             InitializeComponent();
@@ -51,7 +46,6 @@ namespace greenByte.Forms
             isEditing = true;
             this.Text = "Sera Düzenle";
 
-            // Olayı kaldır ve bir daha ekle
             btnSave.Click -= btnSave_Click;
             btnSave.Click += btnSave_Click;
 
@@ -68,51 +62,54 @@ namespace greenByte.Forms
 
         private void LoadGreenhouseData()
         {
-            if (Greenhouse != null)
+            try
             {
-                txtGHName.Text = Greenhouse.Name;
-                txtGHLocation.Text = Greenhouse.Location;
+                if (Greenhouse != null)
+                {
+                    txtGHName.Text = Greenhouse.Name;
+                    txtGHLocation.Text = Greenhouse.Location;
 
+                   
+                }
+            } catch(Exception ex) { 
+            
                 LogDataAccess.Add(new LogModel
                 {
                     UserId = CurrentUser.Id,
-                    LogType = LogType.Info,
-                    Message = $"Sera verileri yüklendi. Sera: {Greenhouse.Name}",
+                    LogType = LogType.Error,
+                    Message = $"Sera verileri yüklenirken hata: {ex.Message}",
                     LogTime = DateTime.Now
                 });
             }
+            
         }
 
         private void FormGreenhouse_Load(object sender, EventArgs e)
         {
-            if (!isEditing)
+           try
             {
-                dateTimePickerKurulusTarihi.Value = DateTime.Now;
-
+                if (!isEditing)
+                {
+                    dateTimePickerKurulusTarihi.Value = DateTime.Now;
+                }
+                else
+                {
+                    LoadGreenhouseData();
+                }
+            } catch(Exception ex)
+            {
                 LogDataAccess.Add(new LogModel
                 {
                     UserId = CurrentUser.Id,
-                    LogType = LogType.Info,
-                    Message = "Yeni sera için varsayılan kuruluş tarihi ayarlandı",
+                    LogType = LogType.Error,
+                    Message = $"Form yüklenirken hata: {ex.Message}",
                     LogTime = DateTime.Now
                 });
-            }
-            else
-            {
-                LoadGreenhouseData();
             }
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            LogDataAccess.Add(new LogModel
-            {
-                UserId = CurrentUser.Id,
-                LogType = LogType.Info,
-                Message = "Form kapatma düğmesine tıklandı",
-                LogTime = DateTime.Now
-            });
-
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }

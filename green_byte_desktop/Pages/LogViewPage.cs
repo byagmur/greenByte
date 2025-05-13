@@ -15,13 +15,13 @@ namespace greenByte.Pages
     public partial class LogViewPage : UserControl
     {
         private LogDataAccess logDataAccess;
-        private List<LogModel> allLogs;  // Sınıf seviyesinde tanımlandı
+        private List<LogModel> allLogs;  
         public LogViewPage()
         {
             InitializeComponent();
             logDataAccess = new LogDataAccess();
-            allLogs = new List<LogModel>(); // Listeyi başlat
-            LoadLogs(); // Log kayıtlarını yükle
+            allLogs = new List<LogModel>();
+            LoadLogs(); 
             LoadComboBoxes();
         }
 
@@ -109,23 +109,28 @@ namespace greenByte.Pages
         {
             try
             {
-                // Log Tiplerini Yükle
                 cmbLogType.Items.Clear();
                 cmbLogType.Items.Add("Info");
                 cmbLogType.Items.Add("Error");
                 cmbLogType.SelectedIndex = -1;
 
-                // Kullanıcıları Yükle
                 var users = logDataAccess.GetAllUsers();
-                users.Insert(0, new UserModel { Id = -1, Username = "Tümü" }); // "Tümü" seçeneği
+                users.Insert(0, new UserModel { Id = -1, Username = "Tümü" }); 
 
                 cmbUsers.DataSource = users;
-                cmbUsers.DisplayMember = "Username"; // Kullanıcı adı gözüksün
-                cmbUsers.ValueMember = "Id";         // ID değeri alınsın
+                cmbUsers.DisplayMember = "Username"; 
+                cmbUsers.ValueMember = "Id"; 
                 cmbUsers.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
+                LogDataAccess.Add(new LogModel
+                {
+                    UserId = CurrentUser.Id,
+                    LogType = LogType.Error,
+                    Message = $"Kullanıcıları yüklerken hata oluştu: {ex.Message}",
+                    LogTime = DateTime.Now
+                });
                 MessageBox.Show("Kullanıcıları yüklerken bir hata oluştu: " + ex.Message);
             }
         }
