@@ -3,16 +3,14 @@ header('Content-Type: application/json');
 date_default_timezone_set('Europe/Istanbul');
 session_start();
 
+// DB bağlantı bilgileri
+require_once __DIR__ . '/db_config.php';
+
 // Oturum kontrolü
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     echo json_encode(['error' => 'Oturum doğrulanamadı']);
     exit;
 }
-
-// DB bağlantı bilgileri
-$dsn = "mysql:host=92.205.171.9;dbname=greenbyte;charset=utf8mb4";
-$db_user = "admin";
-$db_pass = "Ke3@1.3ySq1";
 
 // Varsayılan response
 $response = [

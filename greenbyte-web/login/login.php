@@ -2,11 +2,7 @@
 // Oturum başlat
 session_start();
 
-// Veritabanı bağlantı bilgileri
-$servername = "92.205.171.9"; 
-$username = "admin"; 
-$password = "Ke3@1.3ySq1"; 
-$dbname = "greenbyte"; 
+require_once __DIR__ . '/db_config.php';
 
 // JSON yanıtı mı yoksa normal yanıt mı olacağını kontrol et
 $isAjaxRequest = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';

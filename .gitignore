@@ -4,6 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 # User-specific files
+
 *.rsuser
 *.suo
 *.user
@@ -397,3 +398,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 .vscode/settings.json
+greenbyte-web/esp32_code/secrets.h
+greenbyte-web/main/db_config.php
+greenbyte-desktop/conn.txt

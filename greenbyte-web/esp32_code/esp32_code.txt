@@ -4,11 +4,12 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
+#include "secrets.h"
 
 // WiFi ayarları
-const char* ssid = "Superbox53";
-const char* password = "SuperB0x.53";
-const char* apiUrl = "http://kemalasliyuksek.com/greenbyte/api/sensor_kaydet.php"; // API endpoint'iniz
+const char* ssid = WIFI_SSID;
+const char* password = WIFI_PASSWORD;
+const char* apiUrl = API_URL;
 
 // Sensör pinleri
 #define DHT_PIN 21          // DHT11 için GPIO21 pini (WIRE_SDA olarak gösterilen pin)

@@ -13,10 +13,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 $kullanici_adi = isset($_SESSION["kullanici_adi"]) ? $_SESSION["kullanici_adi"] : "Kullanıcı";
 
 // Veritabanı bağlantı bilgileri
-$servername = "92.205.171.9";
-$username = "admin";
-$password = "Ke3@1.3ySq1";
-$dbname = "greenbyte";
 
 // Sensör değerleri için varsayılan değerler (veri yoksa gösterilecek)
 $sicaklik = "--";

@@ -4,11 +4,12 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
+#include "secrets.h"
 
 // WiFi ayarları
-const char* ssid = "Superbox53";
-const char* password = "SuperB0x.53";
-const char* apiUrl = "http://kemalasliyuksek.com/greenbyte/api/sensor_kaydet.php"; // API endpoint'iniz
+const char* ssid = WIFI_SSID;
+const char* password = WIFI_PASSWORD;
+const char* apiUrl = API_URL; // API endpoint'iniz
 
 // Sensör pinleri
 #define DHT_PIN 21          // DHT11 için GPIO21 pini (WIRE_SDA olarak gösterilen pin)
@@ -46,7 +47,7 @@ const int CIHAZ_ID = 1;     // Bu ESP32'nin veritabanındaki cihaz ID'si
 // ADC çözünürlüğü (ESP32 için)
 #define ADC_COZUNURLUK 4095  // ESP32'nin ADC çözünürlüğü (12-bit)
 
-// MQ135 eşik değerleri - DUMAN EŞİK DEĞERİ DÜŞÜRÜLMÜŞTİR
+// MQ135 eşik değerleri - DUMAN EŞİK DEĞERİ DÜŞÜRÜLMÜŞTÜR
 #define DUMAN_ESIK 1500     // Duman/yangın algılama eşiği (ham değer - düşürüldü)
 #define DUMAN_ARTIS_ESIK 300 // Ani artış eşiği
 
