@@ -36,7 +36,7 @@ Through ESP32 microcontroller and multi-sensor integration, it automatically mon
 - HTML/CSS/JavaScript
 
 **Desktop:**
-- .Net
+- .Net WinForm
 
 ## 🚀 Quick Start
 
