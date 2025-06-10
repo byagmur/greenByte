@@ -13,7 +13,7 @@ Through ESP32 microcontroller and multi-sensor integration, it automatically mon
 🌬️ **Air Quality Monitoring** - CO2 and air quality measurement with MQ135  
 🚰 **Water Level Control** - Tank level monitoring  
 🏠 **Automatic Control** - Fan, LED, and pump automation  
-🌐 **Web Dashboard** - Remote monitoring and control  
+🌐 **Web Dashboard** - Remote monitoring  
 💻 **Desktop Application** - Comprehensive management panel  
 📊 **Data Analytics** - Historical data viewing and reporting  
 ⚠️ **Notification System** - Critical condition alerts
