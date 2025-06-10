@@ -18,18 +18,36 @@ Through ESP32 microcontroller and multi-sensor integration, it automatically mon
 📊 **Data Analytics** - Historical data viewing and reporting  
 ⚠️ **Notification System** - Critical condition alerts
 
-## 🛠️ Tech Stack
+## 🔧 Tech Stack
 
--Hardware: ESP32, DHT11, LDR, MQ135, Soil moisture sensor, Water level sensor, 4-channel relay
--Firmware: Arduino C++
--Backend: PHP REST API
--Database: MySQL
--Frontend: HTML/CSS/JavaScript
--Desktop: .Net 
+**Hardware:**
+- ESP32, DHT11, LDR, MQ135
+- Soil moisture sensor, Water level sensor
+- 4-channel relay
+
+**Firmware:**
+- Arduino C++
+
+**Backend:**
+- PHP REST API
+- MySQL Database
+
+**Frontend:**
+- HTML/CSS/JavaScript
+
+**Desktop:**
+- .Net
 
 ## 🚀 Quick Start
 
--Hardware Setup: Connect sensors to ESP32 according to pin diagram
--Flash Firmware: Upload Arduino code to ESP32
--Setup Backend: Configure PHP API and MySQL database
--Launch Dashboard: Access web interface for monitoring
+### Hardware Setup
+1. Connect sensors to ESP32 according to pin diagram
+
+### Flash Firmware
+1. Upload Arduino code to ESP32
+
+### Setup Backend
+1. Configure PHP API and MySQL database
+
+### Launch Dashboard
+1. Access web interface for monitoring
